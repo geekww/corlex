@@ -1,5 +1,5 @@
 <template>
-  <el-aside>
+  <el-aside width="200px">
     <el-menu :default-openeds="['1']">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-message"></i>导航一</template>

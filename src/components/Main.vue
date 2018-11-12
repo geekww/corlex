@@ -6,13 +6,13 @@
 </template>
 
 <script>
-  import Header from './Header.vue'
-  import SideBar from './SideBar.vue'
+import Header from './Header.vue'
+import SideBar from './SideBar.vue'
 
-  export default {
-    components:{Header,SideBar},
-    name: 'main'
-  }
+export default {
+  components:{Header,SideBar},
+  name: 'main'
+}
 </script>
 
 <style scoped>
