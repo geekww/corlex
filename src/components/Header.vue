@@ -2,10 +2,8 @@
   <div class="header-bar">
     <!--logo-->
     <div class="header-logo">Corlex</div>
-    <!--跳转按钮-->
-    <el-tabs v-model="activeName" @tab-click="handleClick" class="header-tab">
-      <el-tab-pane label="仪表盘" name="first"></el-tab-pane>
-    </el-tabs>
+    .
+
     <!--搜索栏-->
     <el-row class="header-from">
       <el-input v-model="input" placeholder="搜索" class="search-ipt"></el-input>

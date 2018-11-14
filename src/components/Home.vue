@@ -4,12 +4,14 @@
     <el-header>
       <Header></Header>
     </el-header>
+
     <!--侧边栏及主体-->
     <el-container>
       <!--侧边栏-->
       <el-aside width="200px">
         <SideBar></SideBar>
       </el-aside>
+
       <!--内容主体-->
       <el-container>
         <el-main>
