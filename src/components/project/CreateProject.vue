@@ -65,10 +65,16 @@
     methods: {
       onSubmit() {
         if(!this.form.name){
-          this.$message('请输入项目名');
+          this.$message({
+            message: '请输入项目名',
+            type: 'warning'
+          });
           return false;
         }
-        this.$message(this.form.name);
+        this.$message({
+          message: '创建成功',
+          type: 'success'
+        });
       }
     }
   }
