@@ -2,11 +2,9 @@
   <div class="header-bar">
     <!--logo-->
     <div class="header-logo">Corlex</div>
-    .
-
     <!--搜索栏-->
     <el-row class="header-from">
-      <el-input v-model="input" placeholder="搜索" class="search-ipt"></el-input>
+      <el-input v-model="input" placeholder="搜索个人项目" class="search-ipt"></el-input>
       <el-button icon="el-icon-search" circle class="search-btn"></el-button>
     </el-row>
   </div>
@@ -22,9 +20,9 @@
   .header-logo{
     font-size: 30px;
     float: left;
-    width: 200px;
+    width: 240px;
     text-align: center;
-    font-weight:bold;
+    font-weight: bold;
     background: linear-gradient(#5C6EC4,#3D86D8);
     cursor: pointer;
   }

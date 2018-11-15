@@ -2,11 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '../components/Home.vue'
-import RepairProject from '../components/project/RepairProject.vue'
-import CreateProject from '../components/project/CreateProject.vue'
-
-import RepairTask from '../components/task/RepairTask.vue'
-import CreateTask from '../components/task/CreateTask.vue'
+import ProjectManage from '../components/project/ProjectManage.vue'
+import TaskManage from '../components/project/TaskManage.vue'
 
 Vue.use(Router)
 
@@ -20,56 +17,56 @@ export default new Router({
       children: [
         {
           icon: 'el-icon-refresh',
-          path: '/RepairProject',
-          name: '项目维护',
-          component: RepairProject
+          path: '/ProjectManage',
+          name: '所有项目',
+          component: ProjectManage
         },
         {
-          icon: 'el-icon-plus',
-          path: '/CreateProject',
-          name: '项目创建',
-          component: CreateProject
-        },
+          icon: 'el-icon-refresh',
+          path: '/TaskManage',
+          name: '任务',
+          component: TaskManage
+        }
       ]
     },
     {
       path: '/',
       component: Home,
-      name: '任务管理',
-      icon: 'el-icon-tickets',
+      name: '知识共享',
+      icon: 'el-icon-menu',
       children: [
         {
           icon: 'el-icon-refresh',
-          path: '/RepairTask',
-          name: '任务维护',
-          component: RepairTask
+          path: '/ProjectManage',
+          name: '所有项目',
+          component: ProjectManage
         },
         {
-          icon: 'el-icon-plus',
-          path: '/CreateTask',
-          name: '任务创建',
-          component: CreateTask
-        },
+          icon: 'el-icon-refresh',
+          path: '/TaskManage',
+          name: '开发任务',
+          component: TaskManage
+        }
       ]
     },
     {
       path: '/',
       component: Home,
-      name: '人员管理',
-      icon: 'el-icon-service',
+      name: '日程安排',
+      icon: 'el-icon-menu',
       children: [
         {
           icon: 'el-icon-refresh',
-          path: '/RepairTask',
-          name: '人员维护',
-          component: RepairTask
+          path: '/ProjectManage',
+          name: '所有项目',
+          component: ProjectManage
         },
         {
-          icon: 'el-icon-plus',
-          path: '/CreateTask',
-          name: '人员创建',
-          component: CreateTask
-        },
+          icon: 'el-icon-refresh',
+          path: '/TaskManage',
+          name: '开发任务',
+          component: TaskManage
+        }
       ]
     }
   ]

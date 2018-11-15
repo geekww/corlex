@@ -8,7 +8,7 @@
     <!--侧边栏及主体-->
     <el-container>
       <!--侧边栏-->
-      <el-aside width="200px">
+      <el-aside width="240px">
         <SideBar></SideBar>
       </el-aside>
 

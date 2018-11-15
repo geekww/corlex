@@ -21,8 +21,8 @@
     padding: 0!important;
   }
   .el-menu-item a{
-    text-align: right;
-    margin-right: 45px;
+    text-align: left;
+    margin-left: 80px;
     font-size: 13px;
   }
   .el-menu-item.is-active{
