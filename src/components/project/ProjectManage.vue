@@ -1,19 +1,33 @@
 <template>
   <div class="module-box">
-    <el-button type="primary" @click="createProject">创建项目</el-button>
-      <el-row>
+    <div class="form-group-item">
+      <el-button type="primary" @click="createProject">创建项目</el-button>
+      <!--搜索栏-->
+      <el-row class="header-from">
+        <el-input v-model="input" placeholder="搜索个人项目" class="search-ipt"></el-input>
+        <el-button icon="el-icon-search" circle class="search-btn"></el-button>
+      </el-row>
+    </div>
+    <div>
+      <el-row :gutter="12">
         <el-col :span="8">
-          <el-card>
-            <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
-            <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
-              <div class="bottom clearfix">
-                <el-button type="text" class="button">操作按钮</el-button>
-              </div>
-            </div>
+          <el-card shadow="hover">
+            鼠标悬浮时显示
+          </el-card>
+        </el-col>
+        <el-col :span="8">
+          <el-card shadow="hover">
+            鼠标悬浮时显示
+          </el-card>
+        </el-col>
+        <el-col :span="8">
+          <el-card shadow="hover">
+            鼠标悬浮时显示
           </el-card>
         </el-col>
       </el-row>
+    </div>
+
     <!--<el-table :data="view" style="width: 100%">-->
       <!--<el-table-column label="项目编号" prop="pid"></el-table-column>-->
       <!--<el-table-column label="项目名称" prop="name"></el-table-column>-->
@@ -104,5 +118,37 @@
     margin-right: 0;
     margin-bottom: 0;
     width: 50%;
+  }
+  .form-group-item{
+    overflow: hidden;
+  }
+  .el-card{
+    cursor: pointer;
+    border-radius: 10px;
+    width: 240px;
+    height: 240px;
+  }
+  .el-card:hover{
+    box-shadow:0 10px 15px #E4E8EE;
+  }
+  .el-col-8{
+    width: 290px;
+  }
+  .header-from{
+    right: 30px;
+    top: 80px;
+    position: absolute;
+  }
+  .header-from .search-ipt{
+    float: left;
+    width: 150px;
+    border-radius: 50px;
+    overflow: hidden;
+    border-left: 1px solid #dcdfe6;
+    border-right: 1px solid #dcdfe6;
+  }
+  .header-from .search-btn{
+    float: left;
+    margin-left: 10px;
   }
 </style>
