@@ -129,7 +129,7 @@
     height: 240px;
   }
   .el-card:hover{
-    box-shadow:0 10px 15px #E4E8EE;
+    box-shadow: 0 5px 14px 0 rgba(0,0,0,.1);
   }
   .el-col-8{
     width: 290px;
