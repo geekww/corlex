@@ -8,53 +8,15 @@
         <el-button icon="el-icon-search" circle class="search-btn"></el-button>
       </el-row>
     </div>
-    <div>
-      <el-row :gutter="12">
-        <el-col :span="8">
-          <el-card shadow="hover">
-            鼠标悬浮时显示
-          </el-card>
-        </el-col>
-        <el-col :span="8">
-          <el-card shadow="hover">
-            鼠标悬浮时显示
-          </el-card>
-        </el-col>
-        <el-col :span="8">
-          <el-card shadow="hover">
-            鼠标悬浮时显示
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
-
-    <!--<el-table :data="view" style="width: 100%">-->
-      <!--<el-table-column label="项目编号" prop="pid"></el-table-column>-->
-      <!--<el-table-column label="项目名称" prop="name"></el-table-column>-->
-      <!--<el-table-column label="负责人" prop="agent"></el-table-column>-->
-
-      <!--<el-table-column type="expand">-->
-        <!--<template slot-scope="props">-->
-          <!--<el-form label-position="left" inline class="demo-table-expand">-->
-            <!--<el-form-item label="项目编号：">-->
-              <!--<span>{{ props.row.pid }}</span>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="项目名称：">-->
-              <!--<span>{{ props.row.name }}</span>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="负责人：">-->
-              <!--<span>{{ props.row.agent }}</span>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="创建日期：">-->
-              <!--<span>{{ props.row.date }}</span>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="描述：">-->
-              <!--<span>{{ props.row.desc }}</span>-->
-            <!--</el-form-item>-->
-          <!--</el-form>-->
-        <!--</template>-->
-      <!--</el-table-column>-->
-    <!--</el-table>-->
+    <!--项目卡片渲染-->
+    <ul class="card-list">
+      <li class="card-item">
+        <a>
+          <img class="card-img" src="../../assets/img/card-img.jpg">
+          <p class="card-name">项目名</p>
+        </a>
+      </li>
+    </ul>
     <!--创建项目弹窗-->
     <el-dialog title="创建项目" :visible.sync="dialogCreateProjectVisible" center width="600px">
       <ProjectCreate></ProjectCreate>
@@ -122,17 +84,35 @@
   .form-group-item{
     overflow: hidden;
   }
-  .el-card{
+  .card-item{
     cursor: pointer;
     border-radius: 10px;
     width: 240px;
     height: 240px;
+    list-style: none;
+    background: #fff;
+    float: left;
+    margin-right: 50px;
+    position: relative;
+    text-align: center;
+    transition: .4s;
+    overflow: hidden;
   }
-  .el-card:hover{
+  .card-item:hover{
     box-shadow: 0 5px 14px 0 rgba(0,0,0,.1);
   }
-  .el-col-8{
-    width: 290px;
+  .card-item .card-img{
+    width: 240px;
+    height: 180px;
+    transition: .4s;
+  }
+  .card-item .card-img:hover{
+    opacity: .9;
+  }
+  .card-item p{
+    font-size: 14px;
+    line-height: 50px;
+    margin: 0;
   }
   .header-from{
     right: 30px;

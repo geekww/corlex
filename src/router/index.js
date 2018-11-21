@@ -3,7 +3,9 @@ import Router from 'vue-router'
 
 import Home from '../components/Home.vue'
 import ProjectManage from '../components/project/ProjectManage.vue'
+
 import TaskManage from '../components/project/TaskManage.vue'
+import TaskCreate from '../components/project/TaskCreate.vue'
 
 Vue.use(Router)
 
@@ -23,9 +25,9 @@ export default new Router({
         },
         {
           icon: 'el-icon-refresh',
-          path: '/TaskManage',
-          name: '任务',
-          component: TaskManage
+          path: '/TaskCreate',
+          name: '新建开发任务',
+          component: TaskCreate
         }
       ]
     },
