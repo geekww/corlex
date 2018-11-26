@@ -68,6 +68,7 @@
   .el-button{
     float: left;
     margin-bottom: 20px;
+    transition: .4s;
   }
   .demo-table-expand {
     font-size: 0;
@@ -86,7 +87,7 @@
   }
   .card-item{
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 240px;
     height: 240px;
     list-style: none;
@@ -95,11 +96,11 @@
     margin-right: 50px;
     position: relative;
     text-align: center;
-    transition: .4s;
     overflow: hidden;
+    transition: all .4s ease 0s;
   }
   .card-item:hover{
-    box-shadow: 0 5px 14px 0 rgba(0,0,0,.1);
+    box-shadow: 0 15px 15px 0 rgba(15, 37, 64, 0.10);
   }
   .card-item .card-img{
     width: 240px;
