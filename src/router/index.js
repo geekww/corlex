@@ -18,15 +18,15 @@ export default new Router({
       icon: 'el-icon-menu',
       children: [
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-news',
           path: '/ProjectManage',
           name: '所有项目',
           component: ProjectManage
         },
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-edit-outline',
           path: '/TaskCreate',
-          name: '新建开发任务',
+          name: '创建任务',
           component: TaskCreate
         }
       ]
@@ -35,18 +35,18 @@ export default new Router({
       path: '/',
       component: Home,
       name: '知识共享',
-      icon: 'el-icon-menu',
+      icon: 'el-icon-tickets',
       children: [
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-document',
           path: '/ProjectManage',
-          name: '所有项目',
+          name: '所有文档',
           component: ProjectManage
         },
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-edit',
           path: '/TaskManage',
-          name: '开发任务',
+          name: '文档创作',
           component: TaskManage
         }
       ]
@@ -55,18 +55,18 @@ export default new Router({
       path: '/',
       component: Home,
       name: '日程安排',
-      icon: 'el-icon-menu',
+      icon: 'el-icon-date',
       children: [
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-bell',
           path: '/ProjectManage',
-          name: '所有项目',
+          name: '所有会议',
           component: ProjectManage
         },
         {
-          icon: 'el-icon-refresh',
+          icon: 'el-icon-time',
           path: '/TaskManage',
-          name: '开发任务',
+          name: '新建会议',
           component: TaskManage
         }
       ]

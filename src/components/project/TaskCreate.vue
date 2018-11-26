@@ -2,16 +2,16 @@
   <div class="module-box">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
       <el-form-item label="任务名：" prop="tname">
-        <el-input v-model="form.tname" placeholder="例：A10001" maxlength="6"></el-input>
+        <el-input v-model="form.tname" placeholder="请输入任务名" maxlength="6"></el-input>
       </el-form-item>
       <el-form-item label="任务所属：" prop="belong">
         <el-select v-model="form.belong" placeholder="请选择项目">
-          <el-option v-for="item in form.belong_item" :label="item.name" :value="item.uid"></el-option>
+          <el-option v-for="item in form.belong_item" :label="item.name" :value="item.pid"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="创建人：" prop="agent">
-        <el-select v-model="form.agent" placeholder="请选择项目创建人">
-          <el-option v-for="item in form.agent_item" :label="item.name" :value="item.uid"></el-option>
+      <el-form-item label="创建人：" prop="create">
+        <el-select v-model="form.create" placeholder="请选择项目创建人">
+          <el-option v-for="item in form.create_item" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="指派给：" prop="agent">
@@ -19,17 +19,17 @@
           <el-option v-for="item in form.agent_item" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="创建时间：" prop="date">
+      <el-form-item label="创建时间：" prop="dateCreate">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.dateCreate" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="计划完成：" prop="date">
+      <el-form-item label="计划完成：" prop="dateEnd">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" v-model="form.dateEnd" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="项目描述：">
+      <el-form-item label="项目描述：" prop="desc">
         <el-input type="textarea" v-model="form.desc"></el-input>
       </el-form-item>
       <el-form-item>
@@ -50,15 +50,22 @@
           tname: '',
           belong: '',
           belong_item: [
-            {name:'111',pid:'10001'},
+            {name:'松霖商城',pid:'10001'},
+            {name:'松霖OA',pid:'10002'},
           ],
           name: '',
+          create: '',
+          create_item: [
+            {name:'张',uid:'10001'},
+            {name:'王',uid:'10002'}
+          ],
           agent: '',
           agent_item: [
             {name:'张',uid:'10001'},
             {name:'王',uid:'10002'}
           ],
-          date: '',
+          dateCreate: '',
+          dateEnd: '',
           desc: ''
         },
         rules: {
@@ -72,11 +79,20 @@
           belong: [
             { required: true, message: '请选择项目', trigger: 'change' },
           ],
+          create: [
+            { required: true, message: '请选择创建人', trigger: 'change' },
+          ],
           agent: [
             { required: true, message: '请选择项目负责人', trigger: 'change' },
           ],
-          date: [
+          dateCreate: [
             { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+          ],
+          dateEnd: [
+            { type: 'date', required: true, message: '请选择计划日期', trigger: 'change' }
+          ],
+          desc: [
+            { required: true, message: '请输入任务描述', trigger: 'blur' },
           ],
         }
       };
@@ -109,8 +125,8 @@
     margin: 0 auto;
     padding: 50px;
     background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 5px 14px 0 rgba(0,0,0,.1);
+    border-radius: 5px;
+    box-shadow: 0 15px 15px 0 rgba(15, 37, 64, 0.1);
   }
   .el-input{
     width: 200px;

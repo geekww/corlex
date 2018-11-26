@@ -5,7 +5,7 @@
         <el-input v-model="form.pid" placeholder="例：A10001" maxlength="6"></el-input>
       </el-form-item>
       <el-form-item label="项目名称：" prop="name">
-        <el-input v-model="form.name" maxlength="30"></el-input>
+        <el-input v-model="form.name" placeholder="请输入项目名称" maxlength="30"></el-input>
       </el-form-item>
       <el-form-item label="负责人：" prop="agent">
         <el-select v-model="form.agent" placeholder="请选择项目负责人">

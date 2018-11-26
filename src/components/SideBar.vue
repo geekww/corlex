@@ -22,7 +22,7 @@
   }
   .el-menu-item a{
     text-align: left;
-    margin-left: 80px;
+    margin-left: 90px;
     font-size: 13px;
   }
   .el-menu-item.is-active{
