@@ -70,6 +70,26 @@ export default new Router({
           component: TaskManage
         }
       ]
+    },
+    {
+      path: '/',
+      component: Home,
+      name: '人员维护',
+      icon: 'el-icon-service',
+      children: [
+        {
+          icon: 'el-icon-bell',
+          path: '/ProjectManage',
+          name: '所有会议',
+          component: ProjectManage
+        },
+        {
+          icon: 'el-icon-time',
+          path: '/TaskManage',
+          name: '新建会议',
+          component: TaskManage
+        }
+      ]
     }
   ]
 })

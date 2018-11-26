@@ -3,18 +3,13 @@
     <div class="form-group-item">
       <el-button type="primary" @click="createProject">创建项目</el-button>
       <el-button type="primary" @click="php">创建项目</el-button>
-      <!--搜索栏-->
-      <el-row class="header-from">
-        <el-input v-model="input" placeholder="搜索个人项目" class="search-ipt"></el-input>
-        <el-button icon="el-icon-search" circle class="search-btn"></el-button>
-      </el-row>
     </div>
     <!--项目卡片渲染-->
     <ul class="card-list">
-      <li class="card-item">
+      <li class="card-item" v-for="item in card">
         <a>
           <img class="card-img" src="../../assets/img/card-img.jpg">
-          <p class="card-name">项目名</p>
+          <p class="card-name">{{item.name}}</p>
         </a>
       </li>
     </ul>
@@ -33,30 +28,30 @@
     name: 'RepairProject',
     data() {
       return {
-        view: [{
-          pid: 'A10001',
-          name: '松霖家居项目管理系统',
-          agent: 'corlex',
-          date: '2018-11-17',
-          desc: '本系统适用于松霖商城、松霖OA系统、松霖CRM系统的管理',
-        }],
+        card: [{}],
         dialogCreateProjectVisible: false
       }
     },
-    methods:{
-      createProject:function () {
-        this.dialogCreateProjectVisible = true;
-      },
-      php:function () {
+    mounted:function(){
+      this.$nextTick(function(){
         this.axios.post('/api/corlex/src/php/index.php')
           .then(response => {
-            console.log(response);
+            this.card = response.data;
+            console.log(this.card);
           })
           .catch(err => {
             console.log(err);
           });
-      }
+      });
+    },
+    methods:{
+    createProject:function () {
+      this.dialogCreateProjectVisible = true;
+    },
+    php:function () {
+
     }
+  }
   }
 </script>
 
@@ -124,22 +119,5 @@
     font-size: 14px;
     line-height: 50px;
     margin: 0;
-  }
-  .header-from{
-    right: 30px;
-    top: 80px;
-    position: absolute;
-  }
-  .header-from .search-ipt{
-    float: left;
-    width: 150px;
-    border-radius: 50px;
-    overflow: hidden;
-    border-left: 1px solid #dcdfe6;
-    border-right: 1px solid #dcdfe6;
-  }
-  .header-from .search-btn{
-    float: left;
-    margin-left: 10px;
   }
 </style>
