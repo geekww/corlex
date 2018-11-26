@@ -2,6 +2,7 @@
   <div class="module-box">
     <div class="form-group-item">
       <el-button type="primary" @click="createProject">创建项目</el-button>
+      <el-button type="primary" @click="php">创建项目</el-button>
       <!--搜索栏-->
       <el-row class="header-from">
         <el-input v-model="input" placeholder="搜索个人项目" class="search-ipt"></el-input>
@@ -45,6 +46,15 @@
     methods:{
       createProject:function () {
         this.dialogCreateProjectVisible = true;
+      },
+      php:function () {
+        this.axios.post('/api/corlex/src/php/index.php')
+          .then(response => {
+            console.log(response);
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
     }
   }
