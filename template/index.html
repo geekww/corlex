@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/mobilemode/apps/solex/plugins/layui/css/layui.css" />
   <link rel="stylesheet" href="/mobilemode/apps/solex/js/dhtmlx/dhtmlx.css" />
   <link rel="stylesheet" href="/wui/theme/solex/public.css">
+  <link rel="stylesheet" href="./css/public.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -37,7 +38,7 @@
       <div class="form-inline">
         <label class="form-label" for="select">下拉框：</label>
         <div class="form-input-inline">
-          <select type="text" class="form-control cursor" id="select">
+          <select class="form-control cursor" id="select">
             <option value="1">项目1</option>
             <option value="2">项目2</option>
             <option value="3">项目3</option>
@@ -68,7 +69,16 @@
     </div>
     <h2>按钮：</h2>
     <div class="form-group-item">
-      <button type="button" class="solex-btn-search">查询</button>
+      <button type="button" class="solex-btn">默认</button>
+      <button type="button" class="solex-btn-blue">松霖蓝</button>
+      <button type="button" class="solex-btn-white">松霖白</button>
+      <button type="button" class="solex-btn-green">松霖绿</button>
+      <button type="button" class="solex-btn-blue-white">松霖蓝白</button>
+      <button type="button" class="solex-btn-red">松霖红</button>
+      <button type="button" class="solex-btn-orange">松霖橙</button>
+    </div>
+    <div class="form-group-item">
+      <button type="button" class="solex-btn-search">搜索</button>
       <button type="button" class="solex-btn-submit">提交</button>
       <button type="button" class="solex-btn-save">保存</button>
       <button type="button" class="solex-btn-print">打印</button>
@@ -76,8 +86,8 @@
       <button type="button" class="solex-btn-export">导出</button>
       <button type="button" class="solex-btn-add">增加</button>
       <button type="button" class="solex-btn-del">删除</button>
-      <button type="button" class="solex-btn-back">退回</button>
       <button type="button" class="solex-btn-copy">复制</button>
+      <button type="button" class="solex-btn-back">退回</button>
     </div>
     <div class="form-group-item">
       <button type="button" class="solex-btn-search" disabled="disabled">禁用查询</button>
@@ -88,8 +98,18 @@
       <button type="button" class="solex-btn-export" disabled="disabled">禁用导出</button>
       <button type="button" class="solex-btn-add" disabled="disabled">禁用增加</button>
       <button type="button" class="solex-btn-del" disabled="disabled">禁用删除</button>
-      <button type="button" class="solex-btn-back" disabled="disabled">禁用退回</button>
       <button type="button" class="solex-btn-copy" disabled="disabled">禁用复制</button>
+      <button type="button" class="solex-btn-back" disabled="disabled">禁用退回</button>
+    </div>
+    <h2>icon按钮：</h2>
+    <div class="form-group-item">
+      <a class="solex-icon-time left"></a>
+      <a class="solex-icon-time left"></a>
+      <a class="solex-icon-time left"></a>
+      <a class="solex-icon-time left"></a>
+      <!--check-->
+      <a class="solex-icon-check left"></a>
+      <a class="solex-icon-check left checked"></a>
     </div>
     <h2>交互：</h2>
     <div class="form-group-item">
