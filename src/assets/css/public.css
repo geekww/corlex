@@ -15,7 +15,6 @@ address,cite,code,dfn,em,strong,var{font-style:normal;font-weight:400;}
 q:after,q:before{content:'';}
 abbr,acronym{border:0;font-variant:normal;}
 iframe{display:block;}
-
 a{text-decoration:none;cursor:pointer;color: inherit;color:#666;}
 .clear:after ,.clearfix:after{content:'\20';display:block; height:0;line-height:0;font-size:0;clear:both;visibility:hidden;}
 .clear,.clearfix{*zoom:1;}
