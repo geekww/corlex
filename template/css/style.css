@@ -1,0 +1,20 @@
+h2{
+    margin-bottom: 15px;
+}
+.form-control-dialog{
+    width: 100%;
+    background: #fff;
+    border: 1px solid #DCE0E6;
+    padding: 0 10px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: 0 2px 2px 0;
+    transition: .4s;
+}
+.form-control-dialog:hover{
+    border-color: #D2D2D2;
+}
+.form-control-dialog:focus {
+    outline: none;
+    box-shadow: 0 0 15px #E4E8EE;
+}
