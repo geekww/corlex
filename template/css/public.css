@@ -23,279 +23,278 @@ a{text-decoration:none;cursor:pointer;color:#666;}
 .right{float:right;}
 /*内容主体*/
 .main-box{
-  padding: 10px;
+    padding: 10px;
 }
 /*layui初始化*/
 .layui-table-view{
-  width: fit-content;
+    width: fit-content;
 }
 /*DHTMLX初始化*/
 .gridbox{
-  width: fit-content!important;
+    width: fit-content!important;
 }
 .gridbox table{
-  margin-right: 0!important;
+    margin-right: 0!important;
 }
 .gridbox td{
-  vertical-align:middle;
+    vertical-align:middle;
 }
 .gridbox .hdrcell{
-  text-align: center;
-  padding-left: 0!important;
+    text-align: center;
+    padding-left: 0!important;
 }
 .gridbox .hdrcell input[type='checkbox']{
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 /*表单初始化*/
 .form-group{
-  display: block;
-  margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
 }
 .form-group-item{
-  margin-bottom: 15px;
-  clear: both;
-  overflow: hidden;
+    margin-bottom: 15px;
+    clear: both;
+    overflow: hidden;
 }
 .form-inline{
-  display: block;
-  float: left;
-  overflow: hidden;
+    display: block;
+    float: left;
+    overflow: hidden;
 }
 .form-input-inline{
-  width: 190px;
-  margin-right: 10px;
-  margin-left: -1px;
-  float: left;
+    width: 190px;
+    margin-right: 10px;
+    margin-left: -1px;
+    float: left;
 }
 .form-input-block{
-  width: 538px;
-  margin-right: 10px;
-  margin-left: -1px;
-  float: left;
+    width: 538px;
+    margin-right: 10px;
+    margin-left: -1px;
+    float: left;
 }
 /*表单内容*/
 .form-group-item .form-label{
-  float: left;
-  display: block;
-  background: #f2f5fc;
-  color: #494b52;
-  border: 1px solid #DCE0E6;
-  font-size: 12px;
-  line-height: 26px;
-  width: 150px;
-  padding: 0 16px;
-  border-radius: 2px 0 0 2px;
-  text-align: center;
-  overflow: hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+    float: left;
+    display: block;
+    background: #f2f5fc;
+    color: #494b52;
+    border: 1px solid #DCE0E6;
+    font-size: 12px;
+    line-height: 26px;
+    width: 150px;
+    padding: 0 16px;
+    border-radius: 2px 0 0 2px;
+    text-align: center;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .form-group-item .form-label-area{
-  float: left;
-  display: block;
-  background: #f2f5fc;
-  color: #494b52;
-  border: 1px solid #DCE0E6;
-  height: inherit;
-  line-height: 54px;
-  width: 150px;
-  padding: 0 16px;
-  border-radius: 2px 0 0 2px;
-  text-align: center;
-  overflow: hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+    float: left;
+    display: block;
+    background: #f2f5fc;
+    color: #494b52;
+    border: 1px solid #DCE0E6;
+    height: inherit;
+    line-height: 54px;
+    width: 150px;
+    padding: 0 16px;
+    border-radius: 2px 0 0 2px;
+    text-align: center;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 /*单行文本框*/
 .form-control {
-  width: 100%;
-  background: #fff;
-  color: #353942;
-  border: 1px solid #DCE0E6;
-  padding: 0 16px;
-  font-size: 12px;
-  height: 28px;
-  line-height: 28px;
-  border-radius: 0 2px 2px 0;
-  transition: .4s;
+    width: 100%;
+    background: #fff;
+    color: #353942;
+    border: 1px solid #DCE0E6;
+    padding: 0 16px;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 0 2px 2px 0;
+    transition: .4s;
 }
 .form-control:hover{
-  border-color: #D2D2D2;
+    border-color: #D2D2D2;
 }
 .form-control:focus {
-  outline: none;
-  box-shadow: 0 0 15px #E4E8EE;
+    outline: none;
+    box-shadow: 0 0 15px #E4E8EE;
 }
 .form-control.cursor{
-  cursor: pointer;
+    cursor: pointer;
 }
 .form-control::-webkit-input-placeholder,.form-control:-moz-placeholder,.form-control::-moz-placeholder,.form-control:-ms-input-placeholder {
-  color: #bcc1cc;
+    color: #bcc1cc;
 }
 /*多行文本框*/
 .form-control-area{
-  width: 100%;
-  background: #fff;
-  color: #353942;
-  border: 1px solid #DCE0E6;
-  padding: 0 16px;
-  font-size: 12px;
-  height: 56px;
-  line-height: 28px;
-  border-radius: 0 2px 2px 0;
-  transition: .4s;
+    width: 100%;
+    background: #fff;
+    color: #353942;
+    border: 1px solid #DCE0E6;
+    padding: 0 16px;
+    font-size: 12px;
+    height: 56px;
+    line-height: 28px;
+    border-radius: 0 2px 2px 0;
+    transition: .4s;
 }
 .form-control-area:hover{
-  border-color: #D2D2D2;
+    border-color: #D2D2D2;
 }
 .form-control-area:focus {
-  outline: none;
-  box-shadow: 0 0 15px #E4E8EE;
+    outline: none;
+    box-shadow: 0 0 15px #E4E8EE;
 }
 .form-control-area.cursor{
-  cursor: pointer;
+    cursor: pointer;
 }
 .form-control-area::-webkit-input-placeholder,.form-control-area:-moz-placeholder,.form-control-area::-moz-placeholder,.form-control-area:-ms-input-placeholder {
-  color: #bcc1cc;
-  font-size: 12px;
+    color: #bcc1cc;
+    font-size: 12px;
 }
 /*日期区间连接线*/
 .data-line{
-  margin-right: 10px;
-  line-height: 34px;
-  float: left;
+    margin-right: 10px;
+    line-height: 34px;
+    float: left;
 }
 /*按钮初始化*/
 button{
-  margin: 0 2px;
+    margin: 0 2px;
 }
 button:focus{
-  outline: 0;
+    outline: 0;
 }
 /*默认、搜索、提交、松霖蓝*/
 .solex-btn,.solex-btn-search,.solex-btn-submit,.solex-btn-blue {
-  color: #fff;
-  background: #5B8CFF;
-  font-size: 14px;
-  border-radius: 3px;
-  padding: 0 16px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-  border: 1px solid #5B8CFF;
-  transition: .4s;
-  max-width: 150px!important;
+    color: #fff;
+    background: #5B8CFF;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 0 16px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    border: 1px solid #5B8CFF;
+    transition: .4s;
+    max-width: 150px!important;
 }
 .solex-btn:hover,.solex-btn[disabled],.solex-btn-search:hover,.solex-btn-search[disabled],.solex-btn-submit:hover,.solex-btn-submit[disabled],.solex-btn-blue:hover,.solex-btn-blue[disabled] {
-  background: #457BF8;
-  box-shadow: 0 0 20px rgba(17, 33, 72, 0.1) inset;
-  color: #E1E2E6;
+    background: #457BF8;
+    box-shadow: 0 0 20px rgba(17, 33, 72, 0.1) inset;
+    color: #E1E2E6;
 }
 /*保存、打印、松霖白*/
 .solex-btn-save,.solex-btn-print,.solex-btn-white {
-  height: 28px;
-  line-height: 28px;
-  color: #7987A3;
-  background: #fff;
-  border: 1px solid #7987A3;
-  padding: 0 16px;
-  border-radius: 3px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: .4s;
+    height: 28px;
+    line-height: 28px;
+    color: #7987A3;
+    background: #fff;
+    border: 1px solid #7987A3;
+    padding: 0 16px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .4s;
 }
 .solex-btn-save:hover,.solex-btn-save[disabled],.solex-btn-print:hover,.solex-btn-print[disabled],.solex-btn-white:hover,.solex-btn-white[disabled] {
-  color:#5E6980;
-  background:#F0F1F5;
-  border:1px solid #5E6980;
-  box-shadow: 0 0 15px #E3E3E6 inset;
+    color:#5E6980;
+    background:#F0F1F5;
+    border:1px solid #5E6980;
+    box-shadow: 0 0 15px #E3E3E6 inset;
 }
 /*导入、复制、增加、松霖绿*/
 .solex-btn-import,.solex-btn-copy,.solex-btn-add,.solex-btn-green {
-  color: #06B1A1;
-  background: #fff;
-  font-size: 14px;
-  border-radius: 3px;
-  padding: 0 16px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-  border: 1px solid #06B1A1;
-  transition: .4s;
+    color: #06B1A1;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 0 16px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    border: 1px solid #06B1A1;
+    transition: .4s;
 }
 .solex-btn-import:hover,.solex-btn-import[disabled],.solex-btn-copy:hover,.solex-btn-copy[disabled],.solex-btn-add:hover,.solex-btn-add[disabled],.solex-btn-green:hover,.solex-btn-green[disabled] {
-  box-shadow: 0 0 20px #DFF0EF inset;
-  color: #05A193;
-  border: 1px solid #05A193;
+    box-shadow: 0 0 20px #DFF0EF inset;
+    color: #05A193;
+    border: 1px solid #05A193;
 }
 /*导出、松霖蓝白*/
 .solex-btn-export,.solex-btn-blue-white {
-  color: #5B8CFF;
-  background: #fff;
-  font-size: 14px;
-  border-radius: 3px;
-  padding: 0 16px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-  border: 1px solid #5B8CFF;
-  transition: .4s;
+    color: #5B8CFF;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 0 16px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    border: 1px solid #5B8CFF;
+    transition: .4s;
 }
 .solex-btn-export:hover,.solex-btn-export[disabled],.solex-btn-blue-white:hover,.solex-btn-blue-white[disabled] {
-  box-shadow: 0 0 20px #D3DDEB inset;
-  color: #457BF8;
-  border: 1px solid #457BF8;
+    box-shadow: 0 0 20px #D3DDEB inset;
+    color: #457BF8;
+    border: 1px solid #457BF8;
 }
 /*删除、松霖红*/
 .solex-btn-del,.solex-btn-red {
-  color: #F46789;
-  background-color: #fff;
-  font-size: 14px;
-  border-radius: 3px;
-  padding: 0 16px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-  border: 1px solid #F46789;
-  transition: .4s;
-  max-width: 150px!important;
+    color: #F46789;
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 0 16px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    border: 1px solid #F46789;
+    transition: .4s;
+    max-width: 150px!important;
 }
 .solex-btn-del:hover,.solex-btn-del[disabled],.solex-btn-red:hover,.solex-btn-red[disabled] {
-  box-shadow: 0 0 20px RGBA(235, 211, 217, 1) inset;
-  color: #E45578;
-  border: 1px solid #E45578;
+    box-shadow: 0 0 20px RGBA(235, 211, 217, 1) inset;
+    color: #E45578;
+    border: 1px solid #E45578;
 }
 /*退回、松霖橙*/
 .solex-btn-back,.solex-btn-orange {
-  color: #fff;
-  background: #F28153;
-  font-size: 14px;
-  border-radius: 3px;
-  padding: 0 16px;
-  height: 28px;
-  line-height: 28px;
-  cursor: pointer;
-  border: 1px solid #f28153;
-  transition: .4s;
+    color: #fff;
+    background: #F28153;
+    font-size: 14px;
+    border-radius: 3px;
+    padding: 0 16px;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    border: 1px solid #f28153;
+    transition: .4s;
 }
 .solex-btn-back:hover,.solex-btn-back[disabled],.solex-btn-orange:hover,.solex-btn-orange[disabled] {
-  box-shadow: 0 0 20px rgba(243, 205, 190, .5) inset;
-  color: #EBE6E4;
-  border: 1px solid #F67643;
-  background: #F67643;
+    box-shadow: 0 0 20px rgba(243, 205, 190, .5) inset;
+    color: #EBE6E4;
+    border: 1px solid #F67643;
+    background: #F67643;
 }
 /*icon按钮*/
 .solex-icon-time{
-  width: 28px;
-  height: 28px;
-  background: #000;
-  display: block;
-  border: 1px solid #fff;
-  cursor: pointer;
-  transition: .4s;
+    width: 28px;
+    height: 28px;
+    display: block;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: .4s;
 }
 .solex-icon-time:hover{
-  background: #F67643;
+    background: #F67643;
 }
