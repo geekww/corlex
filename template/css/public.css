@@ -1,6 +1,6 @@
 /*样式初始化*/
-*{margin:0;padding:0;box-sizing:border-box;-webkit-box-sizing:border-box;font-size:14px;color:#53545C;}
-body,html{font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-box-sizing:border-box;font-size:14px;}
+body,html{font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;}
 body{overflow:scroll;overflow-x:hidden; }
 table{border-collapse:collapse;border-spacing:0;}
 caption,th{text-align:left;}
@@ -30,24 +30,24 @@ a{text-decoration:none;cursor:pointer;color:#666;}
     width: fit-content;
 }
 /*DHTMLX初始化*/
-.gridbox{
-    width: fit-content!important;
-}
-.gridbox table{
-    margin-right: 0!important;
-}
-.gridbox td{
-    vertical-align:middle;
-}
-.gridbox .hdrcell{
-    text-align: center;
-    padding-left: 0!important;
-}
-.gridbox .hdrcell input[type='checkbox']{
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-}
+/*.gridbox{*/
+    /*width: fit-content!important;*/
+/*}*/
+/*.gridbox table{*/
+    /*margin-right: 0!important;*/
+/*}*/
+/*.gridbox td{*/
+    /*vertical-align:middle;*/
+/*}*/
+/*.gridbox .hdrcell{*/
+    /*text-align: center;*/
+    /*padding-left: 0!important;*/
+/*}*/
+/*.gridbox .hdrcell input[type='checkbox']{*/
+    /*width: 16px;*/
+    /*height: 16px;*/
+    /*cursor: pointer;*/
+/*}*/
 /*表单初始化*/
 .form-group{
     display: block;
@@ -164,7 +164,7 @@ a{text-decoration:none;cursor:pointer;color:#666;}
 /*日期区间连接线*/
 .data-line{
     margin-right: 10px;
-    line-height: 34px;
+    line-height: 28px;
     float: left;
 }
 /*按钮初始化*/
@@ -193,8 +193,8 @@ button:focus{
     box-shadow: 0 0 20px rgba(17, 33, 72, 0.1) inset;
     color: #E1E2E6;
 }
-/*保存、打印、松霖白*/
-.solex-btn-save,.solex-btn-print,.solex-btn-white {
+/*保存、松霖白*/
+.solex-btn-save,.solex-btn-white {
     height: 28px;
     line-height: 28px;
     color: #7987A3;
@@ -206,14 +206,14 @@ button:focus{
     cursor: pointer;
     transition: .4s;
 }
-.solex-btn-save:hover,.solex-btn-save[disabled],.solex-btn-print:hover,.solex-btn-print[disabled],.solex-btn-white:hover,.solex-btn-white[disabled] {
+.solex-btn-save:hover,.solex-btn-save[disabled],.solex-btn-white:hover,.solex-btn-white[disabled] {
     color:#5E6980;
     background:#F0F1F5;
     border:1px solid #5E6980;
     box-shadow: 0 0 15px #E3E3E6 inset;
 }
-/*导入、复制、增加、松霖绿*/
-.solex-btn-import,.solex-btn-copy,.solex-btn-add,.solex-btn-green {
+/*导入、打印、复制、松霖绿*/
+.solex-btn-import,.solex-btn-print,.solex-btn-copy,.solex-btn-green {
     color: #06B1A1;
     background: #fff;
     font-size: 14px;
@@ -225,13 +225,13 @@ button:focus{
     border: 1px solid #06B1A1;
     transition: .4s;
 }
-.solex-btn-import:hover,.solex-btn-import[disabled],.solex-btn-copy:hover,.solex-btn-copy[disabled],.solex-btn-add:hover,.solex-btn-add[disabled],.solex-btn-green:hover,.solex-btn-green[disabled] {
+.solex-btn-import:hover,.solex-btn-import[disabled],.solex-btn-print:hover,.solex-btn-print[disabled],.solex-btn-copy:hover,.solex-btn-copy[disabled],.solex-btn-green:hover,.solex-btn-green[disabled] {
     box-shadow: 0 0 20px #DFF0EF inset;
     color: #05A193;
     border: 1px solid #05A193;
 }
 /*导出、松霖蓝白*/
-.solex-btn-export,.solex-btn-blue-white {
+.solex-btn-export,.solex-btn-blue-white,.solex-btn-add {
     color: #5B8CFF;
     background: #fff;
     font-size: 14px;
@@ -243,7 +243,7 @@ button:focus{
     border: 1px solid #5B8CFF;
     transition: .4s;
 }
-.solex-btn-export:hover,.solex-btn-export[disabled],.solex-btn-blue-white:hover,.solex-btn-blue-white[disabled] {
+.solex-btn-export:hover,.solex-btn-export[disabled],.solex-btn-blue-white:hover,.solex-btn-blue-white[disabled],.solex-btn-add:hover,.solex-btn-add[disabled] {
     box-shadow: 0 0 20px #D3DDEB inset;
     color: #457BF8;
     border: 1px solid #457BF8;
@@ -290,11 +290,105 @@ button:focus{
 .solex-icon-time{
     width: 28px;
     height: 28px;
+    background: url('/wui/theme/solex/icon/solex_time.png')no-repeat center center;
     display: block;
-    border: 1px solid #fff;
     cursor: pointer;
     transition: .4s;
 }
 .solex-icon-time:hover{
-    background: #F67643;
+    background: url('/wui/theme/solex/icon/solex_time_sel.png')no-repeat center center;
+}
+.solex-icon-date{
+    width: 28px;
+    height: 28px;
+    background: url('/wui/theme/solex/icon/solex_calendar.png')no-repeat center center;
+    display: block;
+    cursor: pointer;
+    transition: .4s;
+}
+.solex-icon-date:hover{
+    background: url('/wui/theme/solex/icon/solex_calendar_sel.png')no-repeat center center;
+}
+.solex-icon-search{
+    width: 28px;
+    height: 28px;
+    background: url('/wui/theme/solex/icon/solex_search.png')no-repeat center center;
+    display: block;
+    cursor: pointer;
+    transition: .4s;
+}
+.solex-icon-search:hover{
+    background: url('/wui/theme/solex/icon/solex_search_sel.png')no-repeat center center;
+}
+.solex-icon-add{
+    width: 28px;
+    height: 28px;
+    background: url('/wui/theme/solex/icon/solex_add.png')no-repeat center center;
+    display: block;
+    cursor: pointer;
+    transition: .4s;
+}
+.solex-icon-add:hover{
+    background: url('/wui/theme/solex/icon/solex_add_up.png')no-repeat center center;
+}
+.solex-icon-del{
+    width: 28px;
+    height: 28px;
+    background: url('/wui/theme/solex/icon/solex_del.png')no-repeat center center;
+    display: block;
+    cursor: pointer;
+    transition: .4s;
+}
+.solex-icon-del:hover{
+    background: url('/wui/theme/solex/icon/solex_del_up.png')no-repeat center center;
+}
+.solex-icon-check{
+    width: 28px;
+    height: 28px;
+    background: url('/wui/theme/solex/icon/solex_check.png')no-repeat center center;
+    display: block;
+    cursor: pointer;
+    transition: .4s;
+}
+.solex-icon-check.checked{
+    background: url('/wui/theme/solex/icon/solex_checked.png')no-repeat center center;
+}
+
+/*tab切换*/
+.solex-tab{
+    width: 500px;
+    height: 400px;
+}
+.layui-tab-title{
+    font-size: 14px;
+    background-color: #fff!important;
+    height: 37px!important;
+    padding: 3px 2px 0;
+}
+.layui-tab-title li{
+    line-height: 32px!important;
+    padding: 0 30px;
+    background: #F5F7FA;
+    color: #7987A3;
+    border-radius:4px 4px 0 0;
+    border-left: 1px solid #DCE0E5;
+    border-top: 1px solid #DCE0E5;
+    border-right: 1px solid #DCE0E5;
+    display: block;
+    float: left;
+    margin: 0 2px!important;
+}
+.layui-tab-title .layui-this{
+    color: #5B8CFF;
+    border-top: 3px solid #5B8CFF;
+    line-height: 31px;
+}
+.layui-tab-title .layui-this:after{
+    display: none;
+}
+.layui-icon{
+    line-height: 28px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 20px;
 }
