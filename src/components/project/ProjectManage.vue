@@ -28,7 +28,10 @@
     name: 'RepairProject',
     data() {
       return {
-        card: [{}],
+        card: [{
+          name:"",
+
+        }],
         dialogCreateProjectVisible: false
       }
     },
