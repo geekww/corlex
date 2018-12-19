@@ -2,7 +2,6 @@
   <div class="module-box">
     <div class="form-group-item">
       <el-button type="primary" @click="createProject">创建项目</el-button>
-      <el-button type="primary" @click="php">创建项目</el-button>
     </div>
     <!--项目卡片渲染-->
     <ul class="card-list">
@@ -37,7 +36,7 @@
     },
     mounted:function(){
       this.$nextTick(function(){
-        this.axios.post('/api/corlex/src/php/index.php')
+        this.axios.post('/api/corlex-backstage/src/php/index.php')
           .then(response => {
             this.card = response.data;
             console.log(this.card);

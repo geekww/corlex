@@ -65,11 +65,19 @@
       onSubmit:function(formName){
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$notify({
-              title: '成功',
-              message: '项目创建成功',
-              type: 'success'
-            });
+            // 发送数据
+            this.axios.post('/api/corlex-backstage/')
+              .then(response => {
+                this.card = response.data;
+                this.$notify({
+                  title: '成功',
+                  message: '项目创建成功',
+                  type: 'success'
+                });
+              })
+              .catch(err => {
+                console.log(err);
+              });
           } else {
             console.log('error submit!!');
             return false;
