@@ -7,14 +7,15 @@
       <el-form-item label="项目名称：" prop="name">
         <el-input v-model="form.name" placeholder="请输入项目名称" maxlength="30"></el-input>
       </el-form-item>
-      <el-form-item label="负责人：" prop="agent">
-        <el-select v-model="form.agent" placeholder="请选择项目负责人">
-          <el-option v-for="item in form.agent_item" :label="item.name" :value="item.uid"></el-option>
+      <el-form-item label="项目经理：" prop="manager">
+        <el-select v-model="form.manager" placeholder="请选择项目经理">
+          <el-option v-for="item in form.manager_item" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间：" prop="date">
+        <!--<div class="">值：{{ form.date }}</div>-->
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.date" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="项目描述：">
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+  import qs from 'qs'
   export default {
     name: 'CreateProject',
     data() {
@@ -36,8 +38,8 @@
         form: {
           pid: '',
           name: '',
-          agent: '',
-          agent_item: [
+          manager: '',
+          manager_item: [
             {name:'张',uid:'10001'},
             {name:'王',uid:'10002'}
           ],
@@ -52,11 +54,11 @@
           name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
           ],
-          agent: [
+          manager: [
             { required: true, message: '请选择项目负责人', trigger: 'change' },
           ],
           date: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+            { required: true, message: '请选择日期', trigger: 'change' }
           ],
         }
       };
@@ -66,18 +68,34 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             // 发送数据
-            this.axios.post('/api/corlex-backstage/')
-              .then(response => {
-                this.card = response.data;
-                this.$notify({
-                  title: '成功',
-                  message: '项目创建成功',
-                  type: 'success'
-                });
+            this.axios({
+              method:'post',
+              headers:{
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              },
+              url:'/api/corlex-backstage/model/project/createProject.jsp',
+              //模使用qs拟表单POST请求
+              data:qs.stringify({
+                pid:this.form.pid,
+                name:this.form.name,
+                manager:this.form.manager,
+                date:this.form.date,
+                desc:this.form.desc,
               })
-              .catch(err => {
-                console.log(err);
+            }).then(res => {
+              // this.card = res.data;
+              // this.$notify({
+              //   title: '成功',
+              //   message: '项目创建成功',
+              //   type: 'success'
+              // });
+            }).catch(err => {
+              this.$notify({
+                title: '失败',
+                message: err,
+                type: 'error'
               });
+            });
           } else {
             console.log('error submit!!');
             return false;
@@ -86,7 +104,7 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+      },
     }
   }
 </script>
