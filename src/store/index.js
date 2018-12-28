@@ -2,56 +2,27 @@ import Vue from 'vue'
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-//要设置的全局访问的state对象
-const state={
-  showFooter: true,
-  changableNum:0
-};
+const state = {
+  projectId: 'A10001',
+  projectItem: [],
+  hrItem: [],
+}
 
-//实时监听state值的变化(最新状态)
-const getters = {
-  //方法名随意,主要是来承载变化的showFooter的值
-  isShow(state) {
-    return state.showFooter
-  },
-  //承载变化的changableNum的值
-  getChangedNum(){
-    return state.changebleNum
-  }
-};
-
-//自定义改变state初始值的方法，这里面的参数除了state之外还可以再传额外的参数(变量或对象);
 const mutations = {
-  show(state) {
-    state.showFooter = true;
+  changeProjectId(state, str){
+    state.projectId = str;
   },
-  hide(state) {
-    state.showFooter = false;
+  changeProjectItem(state,str){
+    state.projectItem = str;
   },
-  //传了需要增加的值sum
-  newNum(state,sum){
-    state.changableNum+=sum;
+  changeHrItem(state,str){
+    state.hrItem = str;
   }
-};
+}
 
-//自定义触发mutations里函数的方法，context与store 实例具有相同方法和属性
-const actions = {
-  hideFooter(context) {
-    context.commit('hide');
-  },
-  showFooter(context) {  //同上注释
-    context.commit('show');
-  },
-  getNewNum(context,num){   //同上注释，num为要变化的形参
-    context.commit('newNum',num)
-  }
-};
-
-const store = new Vuex.Store(
-  state,
-  getters,
-  mutations,
-  actions
-);
+const store = new Vuex.Store({
+  state: state,
+  mutations: mutations
+})
 
 export default store;

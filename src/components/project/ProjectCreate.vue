@@ -4,12 +4,12 @@
       <el-form-item label="项目编号：" prop="pid">
         <el-input v-model="form.pid" placeholder="例：A10001" maxlength="6"></el-input>
       </el-form-item>
-      <el-form-item label="项目名称：" prop="name">
-        <el-input v-model="form.name" placeholder="请输入项目名称" maxlength="30"></el-input>
+      <el-form-item label="项目名称：" prop="project">
+        <el-input v-model="form.project" placeholder="请输入项目名称" maxlength="30"></el-input>
       </el-form-item>
       <el-form-item label="项目经理：" prop="manager">
         <el-select v-model="form.manager" placeholder="请选择项目经理">
-          <el-option v-for="item in form.manager_item" :label="item.name" :value="item.uid"></el-option>
+          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间：" prop="date">
@@ -19,7 +19,7 @@
         </el-col>
       </el-form-item>
       <el-form-item label="项目描述：">
-        <el-input type="textarea" v-model="form.desc"></el-input>
+        <el-input type="textarea" v-model="form.remark"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
@@ -37,21 +37,17 @@
       return {
         form: {
           pid: '',
-          name: '',
+          project: '',
           manager: '',
-          manager_item: [
-            {name:'张',uid:'10001'},
-            {name:'王',uid:'10002'}
-          ],
           date: '',
-          desc: ''
+          remark: ''
         },
         rules: {
           pid: [
             { required: true, message: '请输入项目编号', trigger: 'blur' },
             { min: 6, max: 6, message: '请输入有效6位数', trigger: 'blur' }
           ],
-          name: [
+          project: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
           ],
           manager: [
@@ -77,22 +73,36 @@
               //模使用qs拟表单POST请求
               data:qs.stringify({
                 pid:this.form.pid,
-                name:this.form.name,
+                project:this.form.project,
                 manager:this.form.manager,
                 date:this.form.date,
-                desc:this.form.desc,
+                remark:this.form.remark,
               })
-            }).then(res => {
-              // this.card = res.data;
-              // this.$notify({
-              //   title: '成功',
-              //   message: '项目创建成功',
-              //   type: 'success'
-              // });
+            }).then(response => {
+              let res = response.data;
+              if(res.code === '1'){
+                this.$notify({
+                  title: '创建成功',
+                  message: '项目创建成功',
+                  type: 'success'
+                });
+
+                //刷新页面
+                setTimeout(function () {
+                  this.$store.commit("changedialogProject", 'false');
+                },1000);
+              }else if(res.code === '0'){
+                this.$notify({
+                  title: '创建失败',
+                  message: res.msg,
+                  type: 'error'
+                });
+              }
+
             }).catch(err => {
               this.$notify({
                 title: '失败',
-                message: err,
+                message: '网络错误',
                 type: 'error'
               });
             });

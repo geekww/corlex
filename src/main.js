@@ -7,12 +7,12 @@ import App from './App'
 import router from './router'
 // 引入axios
 import axios from 'axios'
-import Qs from 'qs'
+import qs from 'qs'
 // 引入vuex
 import store from './store'
 
 Vue.prototype.axios = axios;
-Vue.prototype.qs = Qs;
+Vue.prototype.qs = qs;
 
 Vue.config.productionTip = false
 
@@ -23,5 +23,24 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App></App>'
+  template: '<App></App>',
+  // 初始化数据
+  mounted:function(){
+    this.$nextTick(function(){
+      this.axios({
+        method:'post',
+        url:'/api/corlex-backstage/model/project/getItem.jsp',
+      }).then(response => {
+        let res = response.data;
+        this.$store.commit("getProjectItem", res.projectItem);
+        this.$store.commit("getHrItem", res.hrItem);
+      }).catch(err => {
+        this.$notify({
+          title: '失败',
+          message: '网络错误',
+          type: 'error'
+        });
+      });
+    });
+  },
 })

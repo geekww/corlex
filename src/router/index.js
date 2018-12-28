@@ -4,8 +4,8 @@ import Router from 'vue-router'
 import Home from '../components/Home.vue'
 import ProjectManage from '../components/project/ProjectManage.vue'
 
-import TaskManage from '../components/project/TaskManage.vue'
 import TaskCreate from '../components/project/TaskCreate.vue'
+import TaskManage from '../components/project/item/TaskManage.vue'
 
 import DocManage from '../components/doc/DocManage.vue'
 import DocCreate from '../components/doc/DocCreate.vue'
@@ -30,13 +30,19 @@ export default new Router({
           icon: 'el-icon-news',
           path: '/ProjectManage',
           name: '所有项目',
-          component: ProjectManage
+          component: ProjectManage,
         },
         {
           icon: 'el-icon-edit-outline',
           path: '/TaskCreate',
           name: '创建任务',
           component: TaskCreate
+        },
+        {
+          icon: 'el-icon-edit-outline',
+          path: '/TaskManage',
+          name: '任务查看',
+          component: TaskManage
         }
       ]
     },

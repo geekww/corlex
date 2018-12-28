@@ -1,36 +1,36 @@
 <template>
   <div class="module-box">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="任务名：" prop="tname">
-        <el-input v-model="form.tname" placeholder="请输入任务名" maxlength="6"></el-input>
+      <el-form-item label="任务名：" prop="task">
+        <el-input v-model="form.task" placeholder="请输入任务名" maxlength="6"></el-input>
       </el-form-item>
-      <el-form-item label="任务所属：" prop="belong">
-        <el-select v-model="form.belong" placeholder="请选择项目">
-          <el-option v-for="item in form.belong_item" :label="item.name" :value="item.pid"></el-option>
+      <el-form-item label="任务所属：" prop="pid">
+        <el-select v-model="form.pid" placeholder="请选择项目">
+          <el-option v-for="item in this.$store.state.projectItem" :label="item.project" :value="item.pid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="创建人：" prop="create">
         <el-select v-model="form.create" placeholder="请选择项目创建人">
-          <el-option v-for="item in form.create_item" :label="item.name" :value="item.uid"></el-option>
+          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="指派给：" prop="agent">
-        <el-select v-model="form.agent" placeholder="请选择任务接收人">
-          <el-option v-for="item in form.agent_item" :label="item.name" :value="item.uid"></el-option>
+      <el-form-item label="指派给：" prop="manager">
+        <el-select v-model="form.manager" placeholder="请选择任务接收人">
+          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间：" prop="dateCreate">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.dateCreate" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.dateCreate" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="计划完成：" prop="dateEnd">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.dateEnd" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.dateEnd" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="项目描述：" prop="desc">
-        <el-input type="textarea" v-model="form.desc"></el-input>
+      <el-form-item label="项目描述：" prop="remark">
+        <el-input type="textarea" v-model="form.remark"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
@@ -42,69 +42,107 @@
 </template>
 
 <script>
+  import qs from 'qs'
   export default {
     name: 'CreateTask',
     data() {
       return {
         form: {
-          tname: '',
-          belong: '',
-          belong_item: [
-            {name:'松霖商城',pid:'10001'},
-            {name:'松霖OA',pid:'10002'},
-          ],
-          name: '',
+          task: '',
+          pid: '',
           create: '',
-          create_item: [
-            {name:'张',uid:'10001'},
-            {name:'王',uid:'10002'}
-          ],
-          agent: '',
-          agent_item: [
-            {name:'张',uid:'10001'},
-            {name:'王',uid:'10002'}
-          ],
+          manager: '',
           dateCreate: '',
           dateEnd: '',
-          desc: ''
+          remark: ''
         },
         rules: {
-          tname: [
+          task: [
             { required: true, message: '请输入任务名', trigger: 'blur' },
-            { min: 6, max: 6, message: '请输入有效6位数', trigger: 'blur' }
           ],
-          name: [
-            { required: true, message: '请输入项目名称', trigger: 'blur' },
-          ],
-          belong: [
-            { required: true, message: '请选择项目', trigger: 'change' },
+          pid: [
+            { required: true, message: '请选择任务所属项目', trigger: 'change' },
           ],
           create: [
             { required: true, message: '请选择创建人', trigger: 'change' },
           ],
-          agent: [
+          manager: [
             { required: true, message: '请选择项目负责人', trigger: 'change' },
           ],
           dateCreate: [
-            { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+            { required: true, message: '请选择日期', trigger: 'change' }
           ],
           dateEnd: [
-            { type: 'date', required: true, message: '请选择计划日期', trigger: 'change' }
+            { required: true, message: '请选择计划日期', trigger: 'change' }
           ],
-          desc: [
+          remark: [
             { required: true, message: '请输入任务描述', trigger: 'blur' },
           ],
         }
       };
     },
+    mounted:function(){
+      this.$nextTick(function(){
+        // 更新全局项目列表、人员列表
+        this.axios({
+          method:'post',
+          url:'/api/corlex-backstage/model/project/getItem.jsp',
+        }).then(response => {
+          let res = response.data;
+          this.$store.commit("changeProjectItem", res.projectItem);
+          this.$store.commit("changeHrItem", res.hrItem);
+        }).catch(err => {
+          this.$notify({
+            title: '失败',
+            message: '网络错误',
+            type: 'error'
+          });
+        });
+      });
+    },
     methods: {
       onSubmit:function(formName){
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$notify({
-              title: '成功',
-              message: '项目创建成功',
-              type: 'success'
+            // 发送数据
+            this.axios({
+              method:'post',
+              headers:{
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              },
+              url:'/api/corlex-backstage/model/project/createTask.jsp',
+              //模使用qs拟表单POST请求
+              data:qs.stringify({
+                task:this.form.task,
+                pid:this.form.pid,
+                create:this.form.create,
+                manager:this.form.manager,
+                dateCreate:this.form.dateCreate,
+                dateEnd:this.form.dateEnd,
+                remark:this.form.remark,
+              })
+            }).then(response => {
+              let res = response.data;
+              if(res.code === '1'){
+                this.$notify({
+                  title: '成功',
+                  message: res.msg,
+                  type: 'success'
+                });
+              }else if(res.code === '0'){
+                this.$notify({
+                  title: '失败',
+                  message: res.msg,
+                  type: 'error'
+                });
+              }
+
+            }).catch(err => {
+              this.$notify({
+                title: '失败',
+                message: '网络错误',
+                type: 'error'
+              });
             });
           } else {
             console.log('error submit!!');

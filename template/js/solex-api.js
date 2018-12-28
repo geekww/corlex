@@ -45,7 +45,7 @@ $(function () {
       closeBtn: 0,
       title:'长文本输入框',
       content:'<pre class="layui-code">' +
-        '&ltdiv class="form-group"&gt\n' +
+        '&ltform class="form-group"&gt\n' +
         '  &ltdiv class="form-group-item"&gt\n' +
         '    &ltdiv class="form-inline"&gt\n' +
         '      &ltlabel class="form-label" for="long">长文本输入框：&lt/label&gt\n' +
@@ -55,7 +55,7 @@ $(function () {
         '      &lt/div&gt\n' +
         '    &lt/div&gt\n' +
         '  &lt/div&gt\n'+
-        '&lt/div&gt'+
+        '&lt/form&gt'+
         '</pre>'
     });
   });
@@ -66,7 +66,7 @@ $(function () {
       closeBtn: 0,
       title:'多行文本框',
       content:'<pre class="layui-code">' +
-        '&ltdiv class="form-group"&gt\n' +
+        '&ltform class="form-group"&gt\n' +
         '   &ltdiv class="form-group-item"&gt\n' +
         '       &ltlabel class="form-label-area" for="long">多行文本框：&lt/label&gt\n' +
         '       &lt!--form-input-block 控制为长多行文本输入框--&gt\n' +
@@ -81,7 +81,7 @@ $(function () {
         '         &lttextarea class="form-control-area" id="area-short" placeholder="多行文本框">&lt/textarea&gt\n' +
         '       &lt/div&gt\n' +
         '   &lt/div&gt\n' +
-        '&lt/div>'+
+        '&lt/form>'+
         '</pre>'
     });
   });
@@ -92,7 +92,7 @@ $(function () {
       closeBtn: 0,
       title:'单行文本框',
       content:'<pre class="layui-code">' +
-        '&ltdiv class="form-group"&gt\n' +
+        '&ltform class="form-group"&gt\n' +
         '  &ltdiv class="form-group-item"&gt\n' +
         '     &ltdiv class="form-inline"&gt\n' +
         '       &ltlabel class="form-label" for="short"&gt短文本输入框：&lt/label&gt\n' +
@@ -113,7 +113,7 @@ $(function () {
         '       &lt/div&gt\n' +
         '     &lt/div&gt\n' +
         '  &lt/div&gt\n' +
-        '&lt/div&gt'+
+        '&lt/form&gt'+
         '</pre>'
     });
   });
@@ -124,7 +124,7 @@ $(function () {
       closeBtn: 0,
       title:'日期选择框',
       content:'<pre class="layui-code">' +
-        '&ltdiv class="form-group"&gt\n' +
+        '&ltform class="form-group"&gt\n' +
         '  &ltdiv class="form-inline"&gt\n' +
         '    &ltlabel class="form-label" for="date"&gt日期：&lt/label&gt\n' +
         '    &ltdiv class="form-input-inline"&gt\n' +
@@ -142,7 +142,7 @@ $(function () {
         '      &ltinput type="text" class="form-control cursor" id="dateEnd" placeholder="请选择结束日期" autocomplete="off"&gt\n' +
         '    &lt/div&gt\n' +
         '  &lt/div&gt\n' +
-        '&lt/div>\n' +
+        '&lt/form>\n' +
         '&ltscript&gt\n' +
         '$(function () {\n' +
         '  layui.use([\'laydate\'], function() {\n' +
