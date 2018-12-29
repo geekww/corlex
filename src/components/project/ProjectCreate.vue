@@ -80,31 +80,13 @@
               })
             }).then(response => {
               let res = response.data;
-              if(res.code === '1'){
-                this.$notify({
-                  title: '创建成功',
-                  message: '项目创建成功',
-                  type: 'success'
-                });
-
+                this.$message(res.msg);
                 //刷新页面
                 setTimeout(function () {
                   this.$store.commit("changedialogProject", 'false');
                 },1000);
-              }else if(res.code === '0'){
-                this.$notify({
-                  title: '创建失败',
-                  message: res.msg,
-                  type: 'error'
-                });
-              }
-
             }).catch(err => {
-              this.$notify({
-                title: '失败',
-                message: '网络错误',
-                type: 'error'
-              });
+              this.$message('网络错误');
             });
           } else {
             console.log('error submit!!');

@@ -1,5 +1,6 @@
 <template>
   <div class="module-box">
+    <el-button icon="el-icon-back" class="back" circle @click="backToProjectManage"></el-button>
     <el-table :data="taskData" style="width: 100%">
       <el-table-column prop="task" label="任务名"></el-table-column>
       <el-table-column prop="creater" label="创建者"></el-table-column>
@@ -42,20 +43,23 @@
           // 渲染任务列表
           this.taskData = res.data;
         }).catch(err => {
-          this.$notify({
-            title: '失败',
-            message: '网络错误',
-            type: 'error'
-          });
+          this.$message('网络错误');
         });
       });
     },
+    methods:{
+      backToProjectManage(){
+        this.$router.push({
+          path:'ProjectManage'
+        });
+      },
+    }
   }
 </script>
 
 <style scoped>
   .module-box{
-    width: 1000px;
+    width: 70%;
     background: #fff;
     padding: 30px 50px;
     animation: fadein .4s;
@@ -67,5 +71,10 @@
   {
     from {opacity: 0}
     to {opacity: 1}
+  }
+  .back{
+    position: fixed;
+    left: 300px;
+    top: 90px;
   }
 </style>

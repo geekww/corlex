@@ -123,29 +123,12 @@
               })
             }).then(response => {
               let res = response.data;
-              if(res.code === '1'){
-                this.$notify({
-                  title: '成功',
-                  message: res.msg,
-                  type: 'success'
-                });
-              }else if(res.code === '0'){
-                this.$notify({
-                  title: '失败',
-                  message: res.msg,
-                  type: 'error'
-                });
-              }
-
+              this.$message(res.msg);
             }).catch(err => {
-              this.$notify({
-                title: '失败',
-                message: '网络错误',
-                type: 'error'
-              });
+              this.$message('网络错误');
             });
           } else {
-            console.log('error submit!!');
+            this.$message('error submit!!');
             return false;
           }
         });
