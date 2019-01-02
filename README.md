@@ -1,6 +1,6 @@
-# corlex
+# 敏捷开发项目管理系统
 
-> A Vue.js project
+> 技术主体：vue + elemenet
 
 ## Build Setup
 
