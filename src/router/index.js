@@ -73,16 +73,10 @@ export default new Router({
       icon: 'el-icon-date',
       children: [
         {
-          icon: 'el-icon-bell',
-          path: '/MeetManage',
-          name: '所有会议',
-          component: MeetManage
-        },
-        {
           icon: 'el-icon-time',
-          path: '/MeetCreate',
-          name: '新建会议',
-          component: MeetCreate
+          path: '/MeetManage',
+          name: '查看日程',
+          component: MeetManage
         }
       ]
     },
