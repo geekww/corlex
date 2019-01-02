@@ -55,13 +55,13 @@ export default new Router({
         {
           icon: 'el-icon-document',
           path: '/DocManage',
-          name: '文章阅读',
+          name: '文档阅读',
           component: DocManage
         },
         {
           icon: 'el-icon-edit',
           path: '/DocCreate',
-          name: '文章创作',
+          name: '写文档',
           component: DocCreate
         }
       ]

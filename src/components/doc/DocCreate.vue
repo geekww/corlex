@@ -1,29 +1,34 @@
 <template>
   <div class="rich-text">
     <header class="rich-header">
-      <input type="text" placeholder="输入文章标题..." autocomplete="off">
+      <input type="text" placeholder="输入文档标题..." autocomplete="off" v-model="title">
       <div class="tool-bar">
-        <a class="save">保存</a>
+        <a class="save" @click="onSave()">保存</a>
+        <a class="save" @click="onSave()">发布</a>
       </div>
     </header>
     <div class="rich-edit">
-        <div class="edit">
-            <textarea v-model="textInput"></textarea>
-        </div>
-        <div class="preview" v-html="compileMarkDown(this.textInput)"></div>
+      <mavon-editor v-model="value"/>
+        <!--<div class="edit">-->
+            <!--<textarea v-model="textInput"></textarea>-->
+        <!--</div>-->
+        <!--<div class="preview" v-html="compileMarkDown(this.textInput)"></div>-->
     </div>
   </div>
 </template>
 
 <script>
-  import showdown from 'showdown'
+  // import showdown from 'showdown'
+  import qs from 'qs'
   export default
   {
     name: 'DocCreate',
     data() {
       return {
+        title:'',
         textInput:'',
         textOutput:'',
+        value:''
       };
     },
     methods: {
@@ -31,6 +36,25 @@
       compileMarkDown:function(value){
         let conver = new showdown.Converter();
         return conver.makeHtml(value)
+      },
+      onSave:function () {
+        this.axios({
+          method:'post',
+          headers:{
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          },
+          url:'/api/corlex-backstage/model/project/createProject.jsp',
+          //模使用qs拟表单POST请求
+          data:qs.stringify({
+            title:this.title,
+            article:this.compileMarkDown(this.textOutput),
+          })
+        }).then(response => {
+          let res = response.data;
+          this.$message(res.msg);
+        }).catch(err => {
+          this.$message('网络错误');
+        });
       }
     }
   }
@@ -52,7 +76,7 @@
   }
   .rich-header{
     width: 100%;
-    height: 7%;
+    height: 40px;
     border-bottom: 1px solid #ddd;
     position: relative;
   }
@@ -62,13 +86,13 @@
     height: 100%;
     float: left;
     padding: 0 20px;
-    font-size: 22px;
+    font-size: 18px;
     outline: none;
     font-weight: 300;
   }
   .tool-bar{
     position: absolute;
-    width: 250px;
+    width: 20%;
     right: 0;
   }
   .tool-bar .save{
@@ -77,10 +101,10 @@
     border-radius: 3px;
     width: 60px;
     float: left;
-    height: 30px;
-    line-height: 30px;
-    margin-top: 15px;
+    height: 24px;
+    line-height: 24px;
     transition: .7s;
+    margin: 8px 5px;
   }
   .tool-bar .save:hover{
     color: #9d9a9a;
@@ -115,12 +139,7 @@
     padding: 0 20px;
     overflow: auto;
   }
-  .preview p code {
-    display: block;
-    color: #333;
-    background: #f8f8f8;
-  }
-  .preview h1{
-    font-size: 30px;
+  .markdown-body{
+    height: 100%;
   }
 </style>

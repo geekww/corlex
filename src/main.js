@@ -11,12 +11,17 @@ import qs from 'qs'
 // 引入vuex
 import store from './store'
 
+// 引入富文本
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
 Vue.prototype.axios = axios;
 Vue.prototype.qs = qs;
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+Vue.use(mavonEditor)
 
 new Vue({
   el: '#app',
