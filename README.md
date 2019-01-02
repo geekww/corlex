@@ -1,6 +1,6 @@
 # 敏捷开发项目管理系统
 
-> 技术主体：vue + elemenet
+> a project base on vue.js 2.0 and elemenet-UI
 
 ## Build Setup
 
