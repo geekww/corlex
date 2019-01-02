@@ -1,8 +1,14 @@
-# corlex
+# 敏捷开发项目管理系统
 
-> A Vue.js project
+> a project base on vue.js 2.0 and elemenet-UI
 
-## Build Setup
+## 功能模块
+> 1、项目管理
+> 2、知识共享
+> 3、日程安排
+> 4、人员管理
+> 5、仪表盘
+> ...
 
 ``` bash
 # install dependencies
