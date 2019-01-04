@@ -6,6 +6,7 @@ const state = {
   projectId: 'A10001',
   projectItem: [],
   hrItem: [],
+  posotionItem: [],
 }
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
   },
   changeHrItem(state,str){
     state.hrItem = str;
+  },
+  changePositionItem(state,str){
+    state.positionItem = str;
   }
 }
 

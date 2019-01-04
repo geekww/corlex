@@ -37,8 +37,9 @@ new Vue({
         url:'/api/corlex-backstage/model/project/getItem.jsp',
       }).then(response => {
         let res = response.data;
-        this.$store.commit("getProjectItem", res.projectItem);
-        this.$store.commit("getHrItem", res.hrItem);
+        this.$store.commit("changeProjectItem", res.projectItem);
+        this.$store.commit("changeHrItem", res.hrItem);
+        this.$store.commit("changePositionItem", res.positionItem);
       }).catch(err => {
         this.$notify({
           title: '失败',
