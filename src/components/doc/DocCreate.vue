@@ -4,21 +4,17 @@
       <input type="text" placeholder="输入文档标题..." autocomplete="off" v-model="title">
       <div class="tool-bar">
         <a class="save" @click="onSave()">保存</a>
-        <a class="save" @click="onSave()">发布</a>
+        <a class="save" @click="onRelease()">发布</a>
       </div>
     </header>
     <div class="rich-edit">
-      <mavon-editor v-model="value"/>
-        <!--<div class="edit">-->
-            <!--<textarea v-models="textInput"></textarea>-->
-        <!--</div>-->
-        <!--<div class="preview" v-html="compileMarkDown(this.textInput)"></div>-->
+      <mavon-editor v-model="markdown"/>
     </div>
   </div>
 </template>
 
 <script>
-  // import showdown from 'showdown'
+  import showdown from 'showdown'
   import qs from 'qs'
   export default
   {
@@ -26,28 +22,27 @@
     data() {
       return {
         title:'',
-        textInput:'',
-        textOutput:'',
-        value:''
+        markdown:'',
+        text:''
       };
     },
     methods: {
       // 编译富文本
-      compileMarkDown:function(value){
-        let conver = new showdown.Converter();
-        return conver.makeHtml(value)
-      },
+      // compileMarkDown:function(value){
+      //   let conver = new showdown.Converter();
+      //   return conver.makeHtml(value)
+      // },
       onSave:function () {
         this.axios({
           method:'post',
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
-          url:'/api/corlex-backstage/models/project/createProject.jsp',
+          url:'/api/corlex/doc/saveDoc',
           //模使用qs拟表单POST请求
           data:qs.stringify({
             title:this.title,
-            article:this.compileMarkDown(this.textOutput),
+            markdown:this.markdown
           })
         }).then(response => {
           let res = response.data;
