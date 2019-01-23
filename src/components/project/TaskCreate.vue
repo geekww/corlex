@@ -1,32 +1,32 @@
 <template>
   <div class="module-box">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="任务名：" prop="task">
-        <el-input v-model="form.task" placeholder="请输入任务名" maxlength="6"></el-input>
+      <el-form-item label="任务名：" prop="name">
+        <el-input v-model="form.name" placeholder="请输入任务名" maxlength="6"></el-input>
       </el-form-item>
       <el-form-item label="任务所属：" prop="pid">
         <el-select v-model="form.pid" placeholder="请选择项目">
-          <el-option v-for="item in this.$store.state.projectItem" :label="item.project" :value="item.pid"></el-option>
+          <el-option v-for="item in projectItem" :label="item.name" :value="item.pid"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="创建人：" prop="create">
-        <el-select v-model="form.create" placeholder="请选择项目创建人">
-          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
+      <el-form-item label="创建人：" prop="creator">
+        <el-select v-model="form.creator" placeholder="请选择项目创建人">
+          <el-option v-for="item in userItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="指派给：" prop="manager">
         <el-select v-model="form.manager" placeholder="请选择任务接收人">
-          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
+          <el-option v-for="item in userItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="创建时间：" prop="dateCreate">
+      <el-form-item label="创建时间：" prop="date">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.dateCreate" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.date" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="计划完成：" prop="dateEnd">
+      <el-form-item label="计划完成：" prop="plane">
         <el-col>
-          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.dateEnd" style="width: 100%;"></el-date-picker>
+          <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.plane" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="项目描述：" prop="remark">
@@ -47,31 +47,33 @@
     data() {
       return {
         form: {
-          task: '',
+          name: '',
           pid: '',
-          create: '',
+          projectItem:[],
+          creator: '',
           manager: '',
-          dateCreate: '',
-          dateEnd: '',
+          userItem:[],
+          date: '',
+          plane: '',
           remark: ''
         },
         rules: {
-          task: [
+          name: [
             { required: true, message: '请输入任务名', trigger: 'blur' },
           ],
           pid: [
             { required: true, message: '请选择任务所属项目', trigger: 'change' },
           ],
-          create: [
+          creator: [
             { required: true, message: '请选择创建人', trigger: 'change' },
           ],
           manager: [
             { required: true, message: '请选择项目负责人', trigger: 'change' },
           ],
-          dateCreate: [
+          date: [
             { required: true, message: '请选择日期', trigger: 'change' }
           ],
-          dateEnd: [
+          plane: [
             { required: true, message: '请选择计划日期', trigger: 'change' }
           ],
           remark: [
@@ -82,14 +84,32 @@
     },
     mounted:function(){
       this.$nextTick(function(){
-        // 更新全局项目列表、人员列表
+        // 获取人员列表
         this.axios({
           method:'post',
-          url:'/api/corlex-backstage/model/project/getItem.jsp',
+          url:'/api/corlex/user/getUser',
         }).then(response => {
           let res = response.data;
-          this.$store.commit("changeProjectItem", res.projectItem);
-          this.$store.commit("changeHrItem", res.hrItem);
+          this.userItem = res.data;
+          // 强制更新UI
+          this.$forceUpdate();
+        }).catch(err => {
+          this.$notify({
+            title: '失败',
+            message: '网络错误',
+            type: 'error'
+          });
+        });
+
+        // 获取项目列表
+        this.axios({
+          method:'post',
+          url:'/api/corlex/project/getProject',
+        }).then(response => {
+          let res = response.data;
+          this.projectItem = res.data;
+          // 强制更新UI
+          this.$forceUpdate();
         }).catch(err => {
           this.$notify({
             title: '失败',
@@ -109,15 +129,15 @@
               headers:{
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
               },
-              url:'/api/corlex-backstage/model/project/createTask.jsp',
+              url:'/api/corlex/task/addTask',
               //模使用qs拟表单POST请求
               data:qs.stringify({
-                task:this.form.task,
+                name:this.form.name,
                 pid:this.form.pid,
-                create:this.form.create,
+                creator:this.form.creator,
                 manager:this.form.manager,
-                dateCreate:this.form.dateCreate,
-                dateEnd:this.form.dateEnd,
+                date:this.form.date,
+                plane:this.form.plane,
                 remark:this.form.remark,
               })
             }).then(response => {

@@ -21,7 +21,8 @@
       </el-form-item>
       <el-form-item label="职位：" prop="position">
         <el-select v-model="form.position" placeholder="请选择职位">
-          <el-option v-for="item in this.$store.state.positionItem" :label="item.position" :value="item.value"></el-option>
+          <el-option v-for="item in this.positionItem" :label="item.position" :value="item.value"></el-option>
+          <!--<el-option v-for="item in this.$store.state.positionItem" :label="item.position" :value="item.value"></el-option>-->
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -80,6 +81,7 @@
           tel:'',
           email:'',
           position:'',
+          positionItem:[]
         },
         rules: {
           name: [
@@ -105,11 +107,12 @@
         // 获取职位列表
         this.axios({
           method:'post',
-          url:'/api/corlex-backstage/model/project/getItem.jsp',
+          url:'/api/corlex/position/getPosition',
         }).then(response => {
           let res = response.data;
-          this.$store.commit("changeProjectItem", res.projectItem);
-          this.$store.commit("changeHrItem", res.hrItem);
+          this.positionItem = res.positionItem;
+          // 强制更新UI
+          this.$forceUpdate();
         }).catch(err => {
           this.$notify({
             title: '失败',
@@ -129,16 +132,15 @@
               headers:{
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
               },
-              url:'/api/corlex-backstage/model/project/createTask.jsp',
+              url:'/api/corlex/user/addUser',
               //模使用qs拟表单POST请求
               data:qs.stringify({
-                task:this.form.task,
-                pid:this.form.pid,
-                create:this.form.create,
-                manager:this.form.manager,
-                dateCreate:this.form.dateCreate,
-                dateEnd:this.form.dateEnd,
-                remark:this.form.remark,
+                name:this.form.name,
+                sex:this.form.sex,
+                uid:this.form.uid,
+                tel:this.form.tel,
+                email:this.form.email,
+                position:this.form.position,
               })
             }).then(response => {
               let res = response.data;

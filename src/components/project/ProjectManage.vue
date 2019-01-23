@@ -5,12 +5,12 @@
     </div>
     <!--项目卡片渲染-->
     <ul class="card-list">
-      <li class="card-item" v-for="item in card">
+      <li class="card-item" v-for="item in projectItem">
         <a @click="changeProjectId(item.pid)">
           <!--<router-link :to="children.TaskManage">-->
             <!--<a>-->
               <img class="card-img" src="../../assets/img/card-img.jpg">
-              <p class="card-name">{{item.project}}</p>
+              <p class="card-name">{{item.name}}</p>
             <!--</a>-->
           <!--</router-link>-->
         </a>
@@ -37,18 +37,18 @@
     name: 'ProjectManage',
     data() {
       return {
-        card: [],
+        projectItem: [],
         dialogProjectCreateVisible: false,
         dialogTaskManageVisible: false
       }
     },
     mounted:function(){
       this.$nextTick(function(){
-        this.axios.post('/api/corlex-backstage/model/project/getProject.jsp')
+        this.axios.post('/api/corlex/project/getProject')
           .then(response => {
             let res = response.data;
             //渲染卡片
-            this.card = res.card;
+            this.projectItem = res.data;
 
           })
           .catch(err => {

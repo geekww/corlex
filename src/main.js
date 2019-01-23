@@ -31,22 +31,22 @@ new Vue({
   template: '<App></App>',
   // 初始化数据
   mounted:function(){
-    this.$nextTick(function(){
-      this.axios({
-        method:'post',
-        url:'/api/corlex-backstage/model/project/getItem.jsp',
-      }).then(response => {
-        let res = response.data;
-        this.$store.commit("changeProjectItem", res.projectItem);
-        this.$store.commit("changeHrItem", res.hrItem);
-        this.$store.commit("changePositionItem", res.positionItem);
-      }).catch(err => {
-        this.$notify({
-          title: '失败',
-          message: '网络错误',
-          type: 'error'
-        });
-      });
-    });
+    // this.$nextTick(function(){
+    //   this.axios({
+    //     method:'post',
+    //     url:'/api/corlex/getInitData',
+    //   }).then(response => {
+    //     let res = response.data;
+    //     // this.$store.commit("changeProjectItem", res.projectItem);
+    //     // this.$store.commit("changeHrItem", res.hrItem);
+    //     this.$store.commit("changePositionItem", res.positionItem);
+    //   }).catch(err => {
+    //     this.$notify({
+    //       title: '失败',
+    //       message: '网络错误',
+    //       type: 'error'
+    //     });
+    //   });
+    // });
   },
 })

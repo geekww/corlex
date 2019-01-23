@@ -4,12 +4,12 @@
       <el-form-item label="项目编号：" prop="pid">
         <el-input v-model="form.pid" placeholder="例：A10001" maxlength="6"></el-input>
       </el-form-item>
-      <el-form-item label="项目名称：" prop="project">
-        <el-input v-model="form.project" placeholder="请输入项目名称" maxlength="30"></el-input>
+      <el-form-item label="项目名称：" prop="name">
+        <el-input v-model="form.name" placeholder="请输入项目名称" maxlength="30"></el-input>
       </el-form-item>
       <el-form-item label="项目经理：" prop="manager">
         <el-select v-model="form.manager" placeholder="请选择项目经理">
-          <el-option v-for="item in this.$store.state.hrItem" :label="item.name" :value="item.uid"></el-option>
+          <el-option v-for="item in this.userItem" :label="item.name" :value="item.uid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间：" prop="date">
@@ -37,8 +37,9 @@
       return {
         form: {
           pid: '',
-          project: '',
+          name: '',
           manager: '',
+          userItem:[],
           date: '',
           remark: ''
         },
@@ -47,7 +48,7 @@
             { required: true, message: '请输入项目编号', trigger: 'blur' },
             { min: 6, max: 6, message: '请输入有效6位数', trigger: 'blur' }
           ],
-          project: [
+          name: [
             { required: true, message: '请输入项目名称', trigger: 'blur' },
           ],
           manager: [
@@ -59,6 +60,26 @@
         }
       };
     },
+    mounted:function(){
+      this.$nextTick(function(){
+        // 获取人员列表
+        this.axios({
+          method:'post',
+          url:'/api/corlex/user/getUser',
+        }).then(response => {
+          let res = response.data;
+          this.userItem = res.data;
+          // 强制更新UI
+          this.$forceUpdate();
+        }).catch(err => {
+          this.$notify({
+            title: '失败',
+            message: '网络错误',
+            type: 'error'
+          });
+        });
+      });
+    },
     methods: {
       onSubmit:function(formName){
         this.$refs[formName].validate((valid) => {
@@ -69,22 +90,24 @@
               headers:{
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
               },
-              url:'/api/corlex-backstage/model/project/createProject.jsp',
+              url:'/api/corlex/project/addProject',
               //模使用qs拟表单POST请求
               data:qs.stringify({
                 pid:this.form.pid,
-                project:this.form.project,
+                name:this.form.name,
                 manager:this.form.manager,
                 date:this.form.date,
                 remark:this.form.remark,
               })
             }).then(response => {
               let res = response.data;
+              if(res.status ===1){
                 this.$message(res.msg);
-                //刷新页面
+                // 刷新路由
                 setTimeout(function () {
-                  this.$store.commit("changedialogProject", 'false');
-                },1000);
+                  this.$router.go(0);
+                },2000)
+              }
             }).catch(err => {
               this.$message('网络错误');
             });

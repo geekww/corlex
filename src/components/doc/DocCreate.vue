@@ -10,7 +10,7 @@
     <div class="rich-edit">
       <mavon-editor v-model="value"/>
         <!--<div class="edit">-->
-            <!--<textarea v-model="textInput"></textarea>-->
+            <!--<textarea v-models="textInput"></textarea>-->
         <!--</div>-->
         <!--<div class="preview" v-html="compileMarkDown(this.textInput)"></div>-->
     </div>
@@ -43,7 +43,7 @@
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
-          url:'/api/corlex-backstage/model/project/createProject.jsp',
+          url:'/api/corlex-backstage/models/project/createProject.jsp',
           //模使用qs拟表单POST请求
           data:qs.stringify({
             title:this.title,

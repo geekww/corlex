@@ -2,11 +2,11 @@
   <div class="module-box">
     <el-button icon="el-icon-back" class="back" circle @click="backToProjectManage"></el-button>
     <el-table :data="taskData" style="width: 100%">
-      <el-table-column prop="task" label="任务名"></el-table-column>
-      <el-table-column prop="creater" label="创建者"></el-table-column>
+      <el-table-column prop="name" label="任务名"></el-table-column>
+      <el-table-column prop="creator" label="创建者"></el-table-column>
       <el-table-column prop="manager" label="任务负责人"></el-table-column>
-      <el-table-column prop="dateCreate" label="创建时间"></el-table-column>
-      <el-table-column prop="dateEnd" label="计划完成时间"></el-table-column>
+      <el-table-column prop="date" label="创建时间"></el-table-column>
+      <el-table-column prop="plane" label="计划完成时间"></el-table-column>
       <el-table-column prop="remark" label="任务描述"></el-table-column>
     </el-table>
   </div>
@@ -33,7 +33,7 @@
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
-          url:'/api/corlex-backstage/model/project/getTask.jsp',
+          url:'/api/corlex/task/getTask',
           //模使用qs拟表单POST请求
           data:qs.stringify({
             pid:this.$store.state.projectId,
