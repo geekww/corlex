@@ -6,11 +6,11 @@
 
     <div class="user-box" v-loading="loading">
       <h1 class="table-title">在职人员</h1>
-      <el-table :data="userData" border style="width: 100%" class="user-table">
-        <el-table-column fixed prop="name" label="姓名" width="150"></el-table-column>
-        <el-table-column fixed prop="sex" label="性别" width="150"></el-table-column>
-        <el-table-column fixed prop="uid" label="工号" width="150"></el-table-column>
-        <el-table-column fixed prop="tel" label="电话" width="150"></el-table-column>
+      <el-table :data="userData" border class="user-table">
+        <el-table-column fixed prop="name" label="姓名" width="100"></el-table-column>
+        <el-table-column fixed prop="sex" label="性别" width="80"></el-table-column>
+        <el-table-column fixed prop="uid" label="工号" width="100"></el-table-column>
+        <el-table-column fixed prop="tel" label="电话" width="130"></el-table-column>
         <el-table-column fixed prop="email" label="邮箱" width="200"></el-table-column>
         <el-table-column fixed prop="position" label="岗位" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
@@ -69,7 +69,7 @@
           <el-input v-model="form.tel" placeholder="请输入联系方式" maxlength="11"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="updateUserInfo(scope.row)">更新</el-button>
+          <el-button type="primary" @click="updateUserInfo()">更新</el-button>
           <el-button @click="resetForm('form')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -145,7 +145,8 @@
         userData: [],
         addUserDialog: false,
         editUserDialog: false,
-        loading: true
+        loading: true,
+        rowUid:''
       }
     },
     mounted:function(){
@@ -270,17 +271,20 @@
       },
       showEditDialog:function(row){
         this.editUserDialog = true;
+        this.form.uid = row.uid;
+        this.form.tel = row.tel;
+        this.form.email = row.email;
+        this.form.position = row.position;
       },
-      updateUserInfo:function(row) {
-        console.log(row);
+      updateUserInfo:function() {
         this.axios({
           method:'post',
           headers:{
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
-          url:'/api/corlex/user/delUser',
+          url:'/api/corlex/user/UpdateUser',
           data:qs.stringify({
-            uid:row.uid,
+            uid:this.form.uid,
             tel:this.form.tel,
             email:this.form.email,
             position:this.form.position,
@@ -289,6 +293,7 @@
           let res = response.data;
           this.$message(res.msg);
           if(res.status ===1){
+            this.editUserDialog = false;
             // 重新获取人员
             this.getUserInfo();
           }
@@ -314,7 +319,7 @@
     text-align: left;
   }
   .user-box{
-    width: fit-content;
+    width: 80%;
     margin: 30px auto;
     padding: 0 50px 50px;
     border-radius: 5px;

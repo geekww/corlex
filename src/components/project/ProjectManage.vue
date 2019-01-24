@@ -126,7 +126,8 @@
     list-style: none;
     background: #fff;
     float: left;
-    margin-right: 50px;
+    margin-right: 80px;
+    margin-bottom: 50px;
     position: relative;
     text-align: center;
     overflow: hidden;
