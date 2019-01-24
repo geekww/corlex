@@ -7,6 +7,10 @@ const state = {
   projectItem: [],
   hrItem: [],
   posotionItem: [],
+  sexMap:[
+    {sex:0,label:'男'},
+    {sex:1,label:'女'}
+  ]
 }
 
 const mutations = {

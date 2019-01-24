@@ -16,6 +16,8 @@ import MeetCreate from '../components/meet/MeetCreate.vue'
 import DevManage from '../components/dev/DevManage.vue'
 import DevCreate from '../components/dev/DevCreate.vue'
 
+import TeamManage from '../components/team/TeamManage.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -83,41 +85,21 @@ export default new Router({
     {
       path: '/',
       component: Home,
-      name: '人员维护',
+      name: '团队管理',
       icon: 'el-icon-service',
       children: [
+        {
+          icon: 'el-icon-bell',
+          path: '/TeamManage',
+          name: '查看团队',
+          component: TeamManage
+        },
         {
           icon: 'el-icon-bell',
           path: '/DevManage',
           name: '查看人员',
           component: DevManage
         },
-        {
-          icon: 'el-icon-time',
-          path: '/DevCreate',
-          name: '创建人员',
-          component: DevCreate
-        }
-      ]
-    },
-    {
-      path: '/',
-      component: Home,
-      name: '团队管理',
-      icon: 'el-icon-service',
-      children: [
-        {
-          icon: 'el-icon-bell',
-          path: '/DevManage',
-          name: '查看团队',
-          component: DevManage
-        },
-        {
-          icon: 'el-icon-time',
-          path: '/DevCreate',
-          name: '创建团队',
-          component: DevCreate
-        }
       ]
     }
   ]

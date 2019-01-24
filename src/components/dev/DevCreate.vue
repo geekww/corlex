@@ -21,8 +21,7 @@
       </el-form-item>
       <el-form-item label="职位：" prop="position">
         <el-select v-model="form.position" placeholder="请选择职位">
-          <el-option v-for="item in this.positionItem" :label="item.position" :value="item.value"></el-option>
-          <!--<el-option v-for="item in this.$store.state.positionItem" :label="item.position" :value="item.value"></el-option>-->
+          <el-option v-for="item in this.positionItem" :label="item.position" :value="item.pid"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -81,7 +80,7 @@
           tel:'',
           email:'',
           position:'',
-          positionItem:[]
+          positionItem:[],
         },
         rules: {
           name: [
@@ -110,7 +109,7 @@
           url:'/api/corlex/position/getPosition',
         }).then(response => {
           let res = response.data;
-          this.positionItem = res.positionItem;
+          this.positionItem = res.data;
           // 强制更新UI
           this.$forceUpdate();
         }).catch(err => {
@@ -149,7 +148,7 @@
               this.$message('网络错误');
             });
           } else {
-            this.$message('error submit!!');
+            this.$message('请填写信息');
             return false;
           }
         });

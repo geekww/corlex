@@ -8,10 +8,10 @@
       <li class="card-item" v-for="item in projectItem">
         <a @click="changeProjectId(item.pid)">
           <!--<router-link :to="children.TaskManage">-->
-            <!--<a>-->
-              <img class="card-img" src="../../assets/img/card-img.jpg">
-              <p class="card-name">{{item.name}}</p>
-            <!--</a>-->
+          <!--<a>-->
+          <img class="card-img" src="../../assets/img/card-img.jpg">
+          <p class="card-name">{{item.name}}</p>
+          <!--</a>-->
           <!--</router-link>-->
         </a>
       </li>
@@ -28,11 +28,15 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+
+  import Router from 'vue-router'
+  Vue.use(Router)
   import {mapState,mapGetters,mapActions} from 'vuex';
   import ProjectCreate from './ProjectCreate.vue'
   import TaskManage from './item/TaskManage.vue'
 
-  export default {
+  export default{
     components:{ProjectCreate,TaskManage},
     name: 'ProjectManage',
     data() {

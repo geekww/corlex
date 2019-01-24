@@ -29,7 +29,7 @@
           <el-date-picker type="date" placeholder="选择日期" value-format="yyyy-MM-dd" v-model="form.plane" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="项目描述：" prop="remark">
+      <el-form-item label="任务描述：" prop="remark">
         <el-input type="textarea" v-model="form.remark"></el-input>
       </el-form-item>
       <el-form-item>
@@ -147,7 +147,7 @@
               this.$message('网络错误');
             });
           } else {
-            this.$message('error submit!!');
+            this.$message('请填写信息');
             return false;
           }
         });
@@ -181,5 +181,8 @@
   }
   .el-button{
     float: left;
+  }
+  textarea{
+    min-height: 150px!important;
   }
 </style>
