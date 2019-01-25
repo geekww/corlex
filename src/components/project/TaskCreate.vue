@@ -2,7 +2,7 @@
   <div class="module-box">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
       <el-form-item label="任务名：" prop="name">
-        <el-input v-model="form.name" placeholder="请输入任务名" maxlength="6"></el-input>
+        <el-input v-model="form.name" placeholder="请输入任务名"></el-input>
       </el-form-item>
       <el-form-item label="任务所属：" prop="pid">
         <el-select v-model="form.pid" placeholder="请选择项目">

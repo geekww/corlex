@@ -8,11 +8,11 @@
       <h1 class="table-title">在职人员</h1>
       <el-table :data="userData" border class="user-table">
         <el-table-column fixed prop="name" label="姓名" width="100"></el-table-column>
-        <el-table-column fixed prop="sex" label="性别" width="80"></el-table-column>
+        <el-table-column fixed prop="sex" label="性别" width="80" :formatter="sexFormatter"></el-table-column>
         <el-table-column fixed prop="uid" label="工号" width="100"></el-table-column>
         <el-table-column fixed prop="tel" label="电话" width="130"></el-table-column>
         <el-table-column fixed prop="email" label="邮箱" width="200"></el-table-column>
-        <el-table-column fixed prop="position" label="岗位" width="150"></el-table-column>
+        <el-table-column fixed prop="info.position" label="岗位" width="150"></el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button type="text" @click="showEditDialog(scope.row)" size="small">编辑</el-button>
@@ -30,8 +30,8 @@
         </el-form-item>
         <el-form-item label="性别：" prop="sex">
           <el-radio-group v-model="form.sex">
-            <el-radio :label="0">男</el-radio>
-            <el-radio :label="1">女</el-radio>
+            <el-radio :label="1">男</el-radio>
+            <el-radio :label="2">女</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="工号：" prop="uid">
@@ -118,7 +118,7 @@
       return {
         form: {
           name: '',
-          sex: 0,
+          sex: 1,
           uid: '',
           tel: '',
           email: '',
@@ -300,6 +300,9 @@
         }).catch(err => {
           this.$message('网络错误');
         });
+      },
+      sexFormatter:function (row) {
+        return row.sex === '1' ? "男" : row.sex === '2' ? "女" : "空";
       }
     },
   }
@@ -319,7 +322,7 @@
     text-align: left;
   }
   .user-box{
-    width: 80%;
+    width: fit-content;
     margin: 30px auto;
     padding: 0 50px 50px;
     border-radius: 5px;
