@@ -47,26 +47,48 @@
         <el-step title="确认团队信息"></el-step>
       </el-steps>
 
-      <el-form :model="team" label-width="100px" v-if="active === 0" style="margin-top: 50px">
-        <el-form-item label="团队名：" prop="name">
-          <el-input v-model="team.name" placeholder="请输入姓名"></el-input>
+      <!--第一步-->
+      <el-form label-width="100px" v-if="active === 0" style="margin-top: 50px">
+        <el-form-item label="选择项目：">
+          <el-select v-model="team.project" placeholder="请选择">
+            <el-option v-for="item in team.projectItem" :key="item.pid" :label="item.name" :value="item.pid"></el-option>
+          </el-select>
         </el-form-item>
-        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        <el-button style="margin-top: 12px;" @click="stepOne_next">下一步</el-button>
       </el-form>
 
-      <el-form :model="team" label-width="100px" v-if="active === 1" style="margin-top: 50px">
-        <el-form-item label="团队名：" prop="name">
-          <el-input v-model="team.name" placeholder="请输入姓名"></el-input>
+      <!--第二步-->
+      <el-form label-width="100px" v-if="active === 1" style="margin-top: 50px">
+        <el-form-item label="UI设计：">
+          <el-select v-model="team.uiDesign" multiple placeholder="请选择">
+            <el-option v-for="item in team.options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
         </el-form-item>
-        <el-button style="margin-top: 12px;" @click="last">上一步</el-button>
-        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        <el-form-item label="前端开发：">
+          <el-select v-model="team.webDev" multiple placeholder="请选择">
+            <el-option v-for="item in team.options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="后端开发：">
+          <el-select v-model="team.backDev" multiple placeholder="请选择">
+            <el-option v-for="item in team.options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="系统测试：" prop="name">
+          <el-select v-model="team.testDev" multiple placeholder="请选择">
+            <el-option v-for="item in team.options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-button style="margin-top: 12px;" @click="stepTwo_last">上一步</el-button>
+        <el-button style="margin-top: 12px;" @click="stepTwo_next">下一步</el-button>
       </el-form>
 
-      <el-form :model="team" label-width="100px" v-if="active === 2" style="margin-top: 50px">
+      <!--第三步-->
+      <el-form label-width="100px" v-if="active === 2" style="margin-top: 50px">
         <el-form-item label="团队名：" prop="name">
           <el-input v-model="team.name" placeholder="请输入姓名"></el-input>
         </el-form-item>
-        <el-button style="margin-top: 12px;" @click="next">立即创建</el-button>
+        <el-button style="margin-top: 12px;" @click="finish">立即创建</el-button>
       </el-form>
 
     </el-dialog>
@@ -82,10 +104,20 @@
         form: {
           position:'',
           positionItem:[],
-          group:'',
         },
         team: {
-          name:'',
+          project:'',
+          projectItem:[],
+          options: [
+            {
+              value: '选项1',
+              label: '黄金糕'
+            }
+          ],
+          uiDesign:[],
+          webDev:[],
+          backDev:[],
+          testDev:[],
         },
         active:0,
         addPositionDialog: false,
@@ -97,9 +129,21 @@
     mounted:function(){
       this.$nextTick(function(){
         this.getPositionInfo();
+        this.getProject();
       });
     },
     methods:{
+      getProject:function(){
+        this.axios.post('/api/corlex/project/getProject')
+          .then(response => {
+            let res = response.data;
+            //渲染项目
+            this.team.projectItem = res.data;
+
+          }).catch(err => {
+          console.log(err);
+        });
+      },
       addPosition:function(){
         if(!this.form.position){
           this.$message('请输入岗位名称');
@@ -205,15 +249,41 @@
           }).catch(err => {
             this.$message('网络错误');
           });
-          }).catch(_ => {
+        }).catch(_ => {
 
         });
       },
-      next() {
-        if (this.active++ > 2) this.active = 0;
+      stepOne_next:function () {
+        if(!this.team.project){
+          this.$message('请选择项目');
+          return false;
+        }
+        this.active = 1;
       },
-      last() {
-        if (this.active-- > 2) this.active = 0;
+      stepTwo_next:function () {
+        if(!this.team.uiDesign.length >0){
+          this.$message('请选择UI设计师');
+          return false;
+        }
+        if(!this.team.webDev.length >0){
+          this.$message('请选择前端工程师');
+          return false;
+        }
+        if(!this.team.backDev.length >0){
+          this.$message('请选择后端工程师');
+          return false;
+        }
+        if(!this.team.testDev.length >0){
+          this.$message('请选择测试工程师');
+          return false;
+        }
+        this.active = 2;
+      },
+      stepTwo_last() {
+        this.active = 0;
+      },
+      finish:function () {
+        this.active = 0;
       }
     },
     // computed:{
@@ -255,5 +325,12 @@
   .position-card .position-item {
     margin-bottom: 18px;
     font-size: 15px;
+  }
+  .el-form{
+    width: 240px;
+    margin: 0 auto;
+  }
+  .el-form-item{
+    margin-left: -100px;
   }
 </style>
